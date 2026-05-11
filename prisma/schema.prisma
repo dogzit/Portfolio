@@ -1,0 +1,29 @@
+// Prisma schema — Portfolio contact form (Neon PostgreSQL)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+  read      Boolean  @default(false)
+
+  @@map("contact_submissions")
+}
+
+model ProjectView {
+  id        String   @id @default(cuid())
+  projectId String
+  viewedAt  DateTime @default(now())
+  userAgent String?
+
+  @@map("project_views")
+}
