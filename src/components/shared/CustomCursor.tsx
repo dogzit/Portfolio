@@ -59,7 +59,7 @@ export function CustomCursor() {
           height:  hovering ? 44 : clicking ? 22 : 32,
           opacity: visible ? 1 : 0,
           borderColor: hovering ? "rgba(96,165,250,0.7)" : "rgba(59,130,246,0.35)",
-          backgroundColor: hovering ? "rgba(59,130,246,0.08)" : "transparent",
+          backgroundColor: hovering ? "rgba(59,130,246,0.08)" : "rgba(0,0,0,0)",
           scale: clicking ? 0.85 : 1,
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}

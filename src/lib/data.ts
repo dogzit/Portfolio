@@ -8,11 +8,11 @@ import {
 
 // ─── About Me ────────────────────────────────────────────────────────────────
 export const BIO = {
-  headline: "Gamer turned developer. Video editor on the side.",
+  headline: "From Competitive Gaming to High-Performance Development.",
   story:
-    "I grew up in front of a screen—mastering CS 1.6 on my dad’s office PC before I could even read properly. By age 6, I had my own rig. As the tactical shooter genre evolved, I spent years grinding the competitive ranks of Valorant from its launch.But beyond the screen, I’ve always been obsessed with the 'how' and 'why' of technology. I’m a deep diver into tech content and product ecosystems, from hardware specs to the latest in consumer electronics. At 13, that curiosity led me to a YouTube coding tutorial, and the switch flipped. I realized I didn't just want to use great products—I wanted to build them. Today, I’m leading dev teams and interning at a FinTech startup, applying a gamer’s grit and a product enthusiast’s eye to Fullstack Development. Same focus, different game.",
-  tagline: "Computer → Games → Code.",
-  roles: ["Full-Stack Developer", "Ex-Valorant Player", "Video Editor"],
+    "I grew up in front of a screen—mastering tactical maneuvers in CS 1.6 on my dad’s office PC long before I understood the underlying code. By age 6, I had my own rig, sparking a lifelong obsession with the intersection of hardware and software. As I climbed the competitive ranks in Valorant, I realized that the same 'meta-analysis' and rapid problem-solving required to win matches were the keys to building great products. At 13, a single YouTube tutorial transformed me from a consumer to a creator. Today, I bridge the gap between high-level logic and intuitive user experience, leading development teams and contributing to FinTech innovation with a gamer’s grit and an engineer’s precision.",
+  tagline: "Strategy → Logic → Scalable Code.",
+  roles: ["Full-Stack Developer", "Team Lead", "Product Enthusiast"],
 };
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
@@ -25,14 +25,13 @@ export const NAV_ITEMS: NavItem[] = [
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 export const PROJECTS: Project[] = [
-  // ── 1. Smart Canteen — April 2026 · FEATURED ────────────────────────────
   {
     id: "smart-canteen",
     title: "Smart Canteen",
-    tagline: "Hackathon — 24h School Canteen System",
+    tagline: "Rapid-Build School Ecosystem",
     description:
-      "24 hours. Zero budget. Real judges. I built a fully functional school canteen management system from scratch at a school hackathon — digital menu browsing, live order tracking, and an admin dashboard. Every line of code written under competition pressure, shipped end-to-end in pure TypeScript.",
-    focus: "Rapid Execution & Full-Stack Under Pressure",
+      "A high-pressure build delivered in 24 hours for a school hackathon. Engineered a complete digital ecosystem for canteen management—bridging the gap between manual ordering and digital efficiency. Developed real-time order synchronization and a streamlined admin interface under strict competition constraints.",
+    focus: "Agile Development & Real-Time Data Handling",
     tags: [
       "Next.js",
       "TypeScript",
@@ -46,41 +45,35 @@ export const PROJECTS: Project[] = [
     gradient: "from-emerald-600/20 via-green-600/10 to-transparent",
     accentColor: "#10b981",
     highlights: [
-      {
-        icon: "⏱️",
-        label: "Time Limit",
-        value: "Zero to production in 24 hours",
-      },
+      { icon: "⏱️", label: "Sprints", value: "Zero to production in 24 hours" },
       {
         icon: "🏆",
-        label: "Competition",
-        value: "School hackathon, April 2026",
+        label: "Recognition",
+        value: "Hackathon Entry, April 2026",
       },
       {
         icon: "🍽️",
-        label: "System",
-        value: "Full canteen — menu, orders, admin",
+        label: "Efficiency",
+        value: "Full-cycle order management system",
       },
     ],
     metrics: [
-      { label: "Build Time", value: "24h", delta: "" },
-      { label: "TypeScript", value: "100%", delta: "" },
-      { label: "Full CRUD", value: "✓", delta: "" },
+      { label: "Lead Time", value: "24h", delta: "" },
+      { label: "Type Safety", value: "100%", delta: "" },
+      { label: "Architecture", value: "Monolith", delta: "" },
     ],
     links: {
       github: "https://github.com/dogzit/Smart-Canteen---hackathon-26.04.20",
       live: "https://smart-canteen-hackathon-26-04-20.vercel.app",
     },
   },
-
-  // ── 2. RentlyMN — March 2026 · Team Lead ────────────────────────────────
   {
     id: "rentlymn",
     title: "RentlyMN",
-    tagline: "Mongolia's Rental Marketplace",
+    tagline: "Centralized Real Estate Solutions",
     description:
-      "Mongolia's rental market was fragmented — listings buried in Facebook groups with no search, no filters, no structure. As team leader and fullstack developer, I owned the architecture and shipped RentlyMN: a structured rental marketplace with property listings, search filters, and Auth.js role-based access. Built with Next.js, Prisma, and Neon PostgreSQL.",
-    focus: "Marketplace Architecture & Team Leadership",
+      "Spearheaded the development of a structured rental marketplace to solve the fragmentation of social media listings. As Team Lead, I architected the database schema and implemented advanced filtering systems, providing a seamless search experience for thousands of potential renters.",
+    focus: "Marketplace Logic & Leadership",
     tags: [
       "Next.js",
       "TypeScript",
@@ -96,27 +89,29 @@ export const PROJECTS: Project[] = [
     highlights: [
       {
         icon: "🧩",
-        label: "Problem",
-        value: "Rental listings scattered on social media",
+        label: "Market Need",
+        value: "Consolidating fragmented data",
       },
       {
         icon: "🔧",
-        label: "Solution",
-        value: "Structured marketplace with auth & filters",
+        label: "Feature set",
+        value: "Role-based Auth & Dynamic Filters",
       },
-      { icon: "👥", label: "Role", value: "Team leader + fullstack architect" },
+      {
+        icon: "👥",
+        label: "Leadership",
+        value: "Full-stack architectural oversight",
+      },
     ],
     links: { live: "http://rentlymn.vercel.app/" },
   },
-
-  // ── 3. FitBet — January 2026 · Team Lead ────────────────────────────────
   {
     id: "fitbet",
     title: "FitBet",
-    tagline: "Fitness Challenge Platform",
+    tagline: "Gamified Fitness & Accountability",
     description:
-      "Fitness goals without accountability fade in days. As team leader, I identified this gap and led the build of FitBet — a platform where users set goals, join challenges, and track progress together. Architected with Next.js, Auth.js for session management, Prisma + Neon PostgreSQL for data, and deployed on Vercel.",
-    focus: "Team Leadership & Full-Stack Architecture",
+      "Addressing the lack of accountability in personal fitness, I led the development of FitBet. The platform leverages social dynamics and goal-tracking to keep users engaged. Architected a robust session management system and integrated Neon PostgreSQL for high-availability data storage.",
+    focus: "Full-Stack Architecture & Social Engineering",
     tags: [
       "Next.js",
       "TypeScript",
@@ -132,27 +127,25 @@ export const PROJECTS: Project[] = [
     highlights: [
       {
         icon: "🎯",
-        label: "Problem",
-        value: "No accountability for fitness goals",
+        label: "Objective",
+        value: "Bridging the fitness accountability gap",
       },
       {
         icon: "🔧",
-        label: "Solution",
+        label: "Logic",
         value: "Real-time challenge & progress tracking",
       },
-      { icon: "👥", label: "Role", value: "Team leader + fullstack architect" },
+      { icon: "👥", label: "Role", value: "Team Leader & Lead Architect" },
     ],
     links: { live: "https://fitbet.vercel.app/" },
   },
-
-  // ── 4. Open Mic — May 2026 · Solo ───────────────────────────────────────
   {
     id: "open-mic",
     title: "Open Mic",
-    tagline: "School Event Registration — Solo, Shipped in Days",
+    tagline: "Event Logistics Solution",
     description:
-      "School events ran on paper sign-up sheets and chaotic group chats. I replaced that with a clean digital flow: designed, built, and deployed Open Mic solo with Next.js + Prisma. Used by real students for my school's live performance event — from idea to production in under a week.",
-    focus: "Solo Execution & Real-World Deployment",
+      "Modernized school event management by replacing manual sign-up sheets with a high-performance web application. Developed and deployed solo within a single week, managing the entire lifecycle from UI design to backend schema and Vercel deployment.",
+    focus: "Rapid Solo Deployment & UX Optimization",
     tags: [
       "Next.js",
       "TypeScript",
@@ -168,30 +161,32 @@ export const PROJECTS: Project[] = [
     highlights: [
       {
         icon: "🎤",
-        label: "Problem",
-        value: "Paper sign-ups → clean digital flow",
+        label: "Impact",
+        value: "Digitalized 100% of event registration",
       },
       {
         icon: "⚡",
-        label: "Timeline",
-        value: "Designed, built & deployed solo",
+        label: "Velocity",
+        value: "From concept to production in <7 days",
       },
-      { icon: "👥", label: "Users", value: "Live event — real students" },
+      {
+        icon: "👥",
+        label: "Target",
+        value: "Real-world school community usage",
+      },
     ],
     links: {
       github: "https://github.com/dogzit/openMic",
       live: "https://survaljlagch-openmic.vercel.app/",
     },
   },
-
-  // ── 5. School Hub — 2025 ────────────────────────────────────────────────
   {
     id: "school-hub",
     title: "School Hub",
-    tagline: "AI-Powered School Management System",
+    tagline: "AI-Enhanced Institutional Management",
     description:
-      "A full-stack school management platform with AI-integrated ordering flows, real-time dashboards, and role-based access for students, teachers, and admins. GPT-powered smart suggestions cut decision time; sub-100ms order processing; 3 permission layers protecting each user type.",
-    focus: "AI Integration & Role-Based Architecture",
+      "A comprehensive management platform featuring AI-driven ordering flows and multi-tenant access control. Engineered sub-100ms processing for school canteen orders and integrated GPT-based suggestions to optimize student and admin decision-making.",
+    focus: "AI Integration & Granular RBAC (Role-Based Access Control)",
     tags: ["Next.js", "Prisma", "PostgreSQL", "OpenAI", "TypeScript"],
     year: "2025",
     status: "Live",
@@ -200,35 +195,37 @@ export const PROJECTS: Project[] = [
     highlights: [
       {
         icon: "🤖",
-        label: "AI Integration",
-        value: "GPT-powered smart suggestions",
+        label: "Intelligence",
+        value: "GPT-powered smart logistics",
       },
-      { icon: "⚡", label: "Performance", value: "Sub-100ms order processing" },
+      {
+        icon: "⚡",
+        label: "Efficiency",
+        value: "Sub-100ms real-time processing",
+      },
       {
         icon: "🔐",
-        label: "Access Control",
-        value: "3 distinct permission layers",
+        label: "Security",
+        value: "3-tier permission architecture",
       },
     ],
     metrics: [
       { label: "Active Users", value: "50+", delta: "+40%" },
-      { label: "Daily Orders", value: "150+", delta: "+60%" },
-      { label: "API Endpoints", value: "47", delta: "" },
+      { label: "Throughput", value: "150+ daily orders", delta: "" },
+      { label: "Endpoints", value: "47 RESTful", delta: "" },
     ],
     links: {
       github: "https://github.com/dogzit/hWork",
       live: "https://11d.vercel.app",
     },
   },
-
-  // ── 6. IG Clone — 2025 ──────────────────────────────────────────────────
   {
     id: "ig-clone",
     title: "IG Clone",
-    tagline: "Decoupled Full-Stack Social Platform",
+    tagline: "Decoupled Systems Exploration",
     description:
-      "An Instagram-inspired social platform built with a deliberately decoupled architecture — TypeScript frontend and a standalone Node.js backend with a REST API. Explores auth patterns, image feeds, and the real engineering tradeoffs of separating frontend from backend into two independent repositories.",
-    focus: "Decoupled Architecture & Full-Stack Separation",
+      "A deep dive into decoupled software architecture. Developed a standalone Node.js REST API and a separate TypeScript frontend to master cross-origin communication, JWT-based authentication, and the complexities of managing independent repositories.",
+    focus: "System Separation & REST API Design",
     tags: ["TypeScript", "Node.js", "JavaScript", "REST API", "Auth"],
     year: "2025",
     status: "In Progress",
@@ -238,72 +235,66 @@ export const PROJECTS: Project[] = [
       {
         icon: "🔀",
         label: "Architecture",
-        value: "Fully decoupled frontend + backend",
+        value: "Decoupled Frontend/Backend",
       },
-      { icon: "🔐", label: "Auth", value: "JWT + session management" },
-      { icon: "📡", label: "API", value: "20+ REST endpoints" },
-    ],
-    metrics: [
-      { label: "Repos", value: "2", delta: "" },
-      { label: "Endpoints", value: "20+", delta: "" },
-      { label: "Pattern", value: "Decoupled", delta: "" },
+      {
+        icon: "🔐",
+        label: "Security",
+        value: "JWT & Stateless Session Management",
+      },
+      {
+        icon: "📡",
+        label: "Interoperability",
+        value: "20+ structured REST endpoints",
+      },
     ],
     links: {
       github: "https://github.com/dogzit/IG-frontend",
       live: "https://zolooproject.vercel.app/login",
     },
   },
-
-  // ── 7. Pinetour — June 2025 · Academy ───────────────────────────────────
   {
     id: "pinetour",
     title: "Pinetour 2025",
-    tagline: "Travel Platform — Academy Project",
+    tagline: "First Steps into Scalable UI",
     description:
-      "Built during Pinecone coding academy — a travel discovery platform with destination listings and browsing UI. The first real project after joining the academy in June 2025, marking the transition from tutorials to real-world development.",
-    focus: "First Real Project — Academy Sprint",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Vercel"],
+      "My inaugural project at Pinecone Academy. Built a travel discovery portal focused on clean UI and semantic structure. This project marked my transition from tutorial-based learning to engineering production-ready interfaces.",
+    focus: "Semantic HTML & Responsive Design",
+    tags: ["HTML", "CSS", "Vercel"],
     year: "2025",
     status: "Live",
     gradient: "from-teal-600/20 via-cyan-600/10 to-transparent",
     accentColor: "#14b8a6",
     highlights: [
-      { icon: "🌲", label: "Context", value: "First Pinecone Academy project" },
-      { icon: "✈️", label: "Domain", value: "Travel discovery platform" },
-      { icon: "⚡", label: "Stack", value: "Next.js + TypeScript + Tailwind" },
+      { icon: "🌲", label: "Milestone", value: "First Pinecone Academy build" },
+      { icon: "✈️", label: "Domain", value: "Travel & Hospitality UI" },
+      { icon: "⚡", label: "Stack", value: "Pure CSS Layout Mastery" },
     ],
     links: {
       github: "https://github.com/dogzit/Pinetour-2025",
       live: "https://pinetour-2025.vercel.app",
     },
   },
-
-  // ── 8. Erhes Tenger — 2025 ──────────────────────────────────────────────
   {
     id: "erhes-tenger",
     title: "Erhes Tenger",
-    tagline: "Brand Identity & Component Library",
+    tagline: "Design Systems & Collaboration",
     description:
-      "Led frontend engineering and brand design for a collaborative team platform. Built a cohesive design system from scratch — 50+ reusable components, a complete visual language, and clean multi-contributor Git workflows across a 4-person team.",
-    focus: "Design Systems & Team Leadership",
-    tags: ["Next.js", "Figma", "TypeScript", "Design System", "Team Lead"],
+      "Spearheaded the frontend engineering for a multi-contributor team project. Established a comprehensive design system with over 50 reusable components, ensuring visual consistency and code modularity across the entire platform.",
+    focus: "Design System Architecture & Team Workflows",
+    tags: ["HTML", "CSS", "Team Lead", "Design Systems"],
     year: "2025",
     status: "Live",
     gradient: "from-orange-600/20 via-amber-600/10 to-transparent",
     accentColor: "#f59e0b",
     highlights: [
-      { icon: "🎨", label: "Design System", value: "50+ reusable components" },
-      { icon: "👥", label: "Team Size", value: "Led a team of 4 devs" },
       {
-        icon: "🏆",
-        label: "Brand Identity",
-        value: "Full visual language built",
+        icon: "🎨",
+        label: "Scalability",
+        value: "50+ custom reusable components",
       },
-    ],
-    metrics: [
-      { label: "Components", value: "50+", delta: "" },
-      { label: "Team Size", value: "4", delta: "" },
-      { label: "Sprints", value: "8", delta: "" },
+      { icon: "👥", label: "Ops", value: "Led 4-developer Git workflow" },
+      { icon: "🏆", label: "Design", value: "End-to-end brand identity build" },
     ],
     links: {
       github: "https://github.com/dogzit/ErhestengerWeb",
@@ -315,36 +306,33 @@ export const PROJECTS: Project[] = [
 // ─── Skills ───────────────────────────────────────────────────────────────────
 export const SKILLS: SkillCategory[] = [
   {
-    name: "Frontend",
+    name: "Frontend Engineering",
     icon: "◈",
     skills: [
       { name: "Next.js", level: 92, color: "#f0f0f8" },
-      { name: "React", level: 90, color: "#61dafb" },
-      { name: "TypeScript", level: 88, color: "#3b82f6" },
+      { name: "React / TS", level: 90, color: "#61dafb" },
       { name: "Tailwind CSS", level: 94, color: "#06b6d4" },
       { name: "Framer Motion", level: 80, color: "#a78bfa" },
     ],
   },
   {
-    name: "Backend",
+    name: "Backend & Dev Ops",
     icon: "⬡",
     skills: [
       { name: "Node.js", level: 85, color: "#6dbf67" },
-      { name: "Prisma ORM", level: 88, color: "#5a67d8" },
+      { name: "Prisma / Neon", level: 88, color: "#5a67d8" },
       { name: "PostgreSQL", level: 82, color: "#336791" },
-      { name: "REST APIs", level: 90, color: "#f59e0b" },
       { name: "Auth.js", level: 78, color: "#ec4899" },
     ],
   },
   {
-    name: "Tools & Workflow",
+    name: "Tools & Ecosystem",
     icon: "⬢",
     skills: [
       { name: "Git / GitHub", level: 90, color: "#f0f0f8" },
       { name: "Figma", level: 82, color: "#a259ff" },
       { name: "Vercel", level: 88, color: "#f0f0f8" },
-      { name: "VS Code", level: 95, color: "#007acc" },
-      { name: "Neon DB", level: 80, color: "#00e5bf" },
+      { name: "VS Code / Cursor", level: 95, color: "#007acc" },
     ],
   },
 ];
@@ -352,75 +340,62 @@ export const SKILLS: SkillCategory[] = [
 // ─── Timeline ─────────────────────────────────────────────────────────────────
 export const TIMELINE: TimelineEvent[] = [
   {
-    period: "Kindergarten",
-    title: "Born on a Computer",
-    subtitle: "Dad's Office → y8 → CS 1.6",
+    period: "Early Years",
+    title: "Digital Genesis",
+    subtitle: "Hardware & Intuition",
     description:
-      "It started at my dad's workplace — a computer in the corner that became my whole world. y8.com, Counter-Strike 1.6, and games I didn't understand but couldn't stop playing. Got my own PC at 6 years old. That machine lasted until I was 13.",
-    tags: ["CS 1.6", "y8", "First PC at 6", "Childhood"],
+      "My journey didn't start with code, but with hardware and logic. Navigating complex game environments at age 6 built a foundation for spatial awareness and pattern recognition that I now apply to complex UI/UX structures.",
+    tags: ["Early Adopter", "First PC at 6", "Logic Building"],
     side: "left",
   },
   {
     period: "2020 – 2025",
-    title: "Five Years of Valorant",
-    subtitle: "Ranked. Serious. Obsessed.",
+    title: "The Competitive Era",
+    subtitle: "Strategy Under Pressure",
     description:
-      "Spent 5 years in Valorant — peaked at Diamond, studied agents like patch notes were homework. Gaming taught me focus, pattern recognition, and how to stay calm under pressure. Skills I still use every day.",
-    tags: ["Valorant", "Diamond", "5 Years", "Side: Video Editing"],
+      "Spent half a decade mastering Valorant, reaching Diamond rank. This period was my unofficial training in high-stakes communication, split-second decision making, and team synchronization—traits that define my current leadership style.",
+    tags: ["Valorant", "Diamond Rank", "Peak Performance", "Team Dynamics"],
     side: "right",
   },
   {
     period: "2023",
-    title: "One Tutorial Changed It",
-    subtitle: "13 Years Old — First Line of Code",
+    title: "The Catalyst",
+    subtitle: "First Script Shipped",
     description:
-      "Still gaming, but one YouTube tutorial cracked it open. Built a burger game by copying code I barely understood — and felt more alive doing it than I had in months. The switch was flipping.",
-    tags: ["YouTube", "First Tutorial", "13 Years Old", "Burger Game"],
+      "While gaming, one YouTube tutorial unlocked a new level of curiosity. I built a simple burger game by dissecting the code—it was the moment I transitioned from just playing games to understanding how to build the engines behind them.",
+    tags: ["First Tutorial", "13 Years Old", "Creative Spark"],
     side: "left",
   },
   {
     period: "June 2025",
-    title: "Quit Valorant. Joined Academy.",
-    subtitle: "Pinecone — Dev Mode Activated",
+    title: "Academy Induction",
+    subtitle: "Pinecone — Full-Stack Activation",
     description:
-      "Traded ranked Valorant for Pinecone coding academy. Structured curriculum, real projects, and mentorship from senior developers. Two years of curiosity finally had a direction. Went from zero to full-stack in months.",
-    tags: ["Academy", "Next.js", "TypeScript", "Mentorship"],
+      "Traded competitive lobbies for a structured engineering curriculum. Immersed myself in professional workflows, mastering the T3 stack and learning to ship production-ready applications under the guidance of senior mentors.",
+    tags: ["Pinecone Academy", "Full-Stack Transition", "Mentorship"],
     side: "right",
   },
   {
-    period: "Sept 2025",
-    title: "First Real Projects",
-    subtitle: "Erhes Tenger & IG Clone",
-    description:
-      "Applied everything from the academy to real, shipped products — led Erhes Tenger (design system + 4-person team) and built IG Clone (decoupled social platform with a standalone REST API backend).",
-    tags: ["React", "Next.js", "Node.js", "Team Lead", "Design System"],
-    side: "left",
-  },
-  {
-    period: "Jan – Mar 2026",
-    title: "Team Lead × 2",
-    subtitle: "FitBet & RentlyMN",
-    description:
-      "Led two consecutive product teams as fullstack developer and team leader. FitBet in January, RentlyMN in March — both architected from scratch, both shipped to production on time.",
-    tags: ["Team Lead", "Prisma", "Auth.js", "Neon DB", "Production"],
-    side: "left",
-  },
-  {
     period: "April 2026",
-    title: "FinTech Internship + Hackathon ",
-    subtitle: "Payment Startup & Smart Canteen",
+    title: "Professional Integration",
+    subtitle: "FinTech & Rapid Innovation",
     description:
-      "Completed a 2-week frontend internship at a Mongolian FinTech payment startup — contributed to production-grade payment UI components under senior developer mentorship. Same month: built and shipped Smart Canteen at a school hackathon in 24 hours flat.",
-    tags: ["FinTech", "Internship", "Production UI", "Hackathon", "24h"],
+      "Immersed myself in a professional FinTech environment, refining my frontend skills with production-grade components. Simultaneously proved my ability to deliver end-to-end solutions in 24 hours during the Smart Canteen build.",
+    tags: [
+      "FinTech",
+      "Professional Internship",
+      "Production Grade",
+      "Hackathon",
+    ],
     side: "right",
   },
   {
     period: "May 2026",
-    title: "Open Mic — Shipped Solo",
-    subtitle: "Real Problem. Real Users.",
+    title: "Independent Execution",
+    subtitle: "Open Mic Launch",
     description:
-      "Designed, built, and deployed Open Mic — a registration webapp for my school's live performance event. Solo, start to production in days. Used by real students the same week it launched.",
-    tags: ["Solo", "Next.js", "TypeScript", "Prisma", "Live Users"],
+      "Designed and deployed a full-scale registration portal for my school's live event. Proved my ability to manage the complete SDLC solo—from initial UI/UX blueprints to final production deployment.",
+    tags: ["Solo Launch", "Next.js", "Real-World Impact"],
     side: "left",
   },
 ];
@@ -459,8 +434,8 @@ export const CONTACT_LINKS: ContactLink[] = [
   },
   {
     label: "YouTube",
-    href: "https://www.youtube.com/@HANGVV",
+    href: "https://www.youtube.com/@Zolodev",
     icon: "youtube",
-    username: "@HANGVV",
+    username: "@Zolodev",
   },
 ];
