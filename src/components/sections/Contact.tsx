@@ -60,7 +60,7 @@ export function Contact() {
   const directLinks = CONTACT_LINKS.filter((l) => ["mail", "phone"].includes(l.icon));
 
   return (
-    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+    <section id="contact" className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6 overflow-hidden">
 
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
@@ -83,7 +83,7 @@ export function Contact() {
           <motion.p variants={fadeUp} className="text-xs font-mono text-electric/60 tracking-[0.2em] uppercase mb-5">
             // 04 &nbsp; contact
           </motion.p>
-          <motion.h2 variants={fadeUp} className="text-4xl md:text-6xl font-bold text-foreground leading-tight mb-5">
+          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground leading-tight mb-5">
             Let&apos;s work<br />
             <span className="shimmer-text">together.</span>
           </motion.h2>
@@ -110,7 +110,7 @@ export function Contact() {
                 onClick={copyEmail}
                 className="group flex items-center gap-3 text-left"
               >
-                <span className="text-lg md:text-xl font-mono text-foreground/80 group-hover:text-foreground transition-colors break-all">
+                <span className="text-base sm:text-lg md:text-xl font-mono text-foreground/80 group-hover:text-foreground transition-colors break-all">
                   bolorzoloko@gmail.com
                 </span>
                 <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.07] flex items-center justify-center group-hover:border-electric/30 group-hover:bg-electric/10 transition-all">
@@ -191,7 +191,7 @@ export function Contact() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="mt-24 pt-8 border-t border-white/[0.04] flex items-center justify-between"
+          className="mt-16 sm:mt-24 pt-8 border-t border-white/[0.04] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2"
         >
           <p className="text-xs font-mono text-muted/20 italic">
             &ldquo;I don&apos;t learn to pass exams. I learn to build.&rdquo;

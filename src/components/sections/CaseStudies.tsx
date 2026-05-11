@@ -17,9 +17,9 @@ import { fadeUp, viewportConfig } from "@/lib/animations";
 // ── Spring config ─────────────────────────────────────────────────────────────
 const SPRING = { type: "spring" as const, stiffness: 280, damping: 26, mass: 0.7 };
 
-// ── Bento cell layout config ──────────────────────────────────────────────────
+// ── Bento cell layout config (desktop 3-col grid) ────────────────────────────
 // Each entry: [colStart, colEnd, rowStart, rowEnd]
-const GRID: [number, number, number, number][] = [
+const GRID_DESKTOP: [number, number, number, number][] = [
   [1, 3, 1, 3], // 0 Smart Canteen  — large 2×2
   [3, 4, 1, 2], // 1 RentlyMN       — right top
   [3, 4, 2, 3], // 2 FitBet         — right mid
@@ -28,6 +28,18 @@ const GRID: [number, number, number, number][] = [
   [3, 4, 3, 4], // 5 IG Clone       — small
   [1, 2, 4, 5], // 6 Pinetour       — small
   [2, 4, 4, 5], // 7 Erhes Tenger   — wide 2×1
+];
+
+// Tablet 2-col grid positions
+const GRID_TABLET: [number, number, number, number][] = [
+  [1, 3, 1, 3], // 0 Smart Canteen  — large 2×2
+  [1, 2, 3, 4], // 1 RentlyMN
+  [2, 3, 3, 4], // 2 FitBet
+  [1, 2, 4, 5], // 3 Open Mic
+  [2, 3, 4, 5], // 4 School Hub
+  [1, 2, 5, 6], // 5 IG Clone
+  [2, 3, 5, 6], // 6 Pinetour
+  [1, 3, 6, 7], // 7 Erhes Tenger   — wide 2×1
 ];
 
 // ── Status badge ──────────────────────────────────────────────────────────────
@@ -42,27 +54,36 @@ function StatusDot({ status, color }: { status: Project["status"]; color: string
 // ── Bento card (grid item) ────────────────────────────────────────────────────
 function BentoCard({
   project,
-  gridPos,
+  desktopPos,
+  tabletPos,
+  index,
   isSelected,
   onSelect,
 }: {
   project: Project;
-  gridPos: [number, number, number, number];
+  desktopPos: [number, number, number, number];
+  tabletPos: [number, number, number, number];
+  index: number;
   isSelected: boolean;
   onSelect: () => void;
 }) {
-  const [cs, ce, rs, re] = gridPos;
+  const [cs, ce, rs, re] = desktopPos;
+  const [tcs, tce, trs, tre] = tabletPos;
   const isBig = ce - cs >= 2 && re - rs >= 2;
   const isWide = ce - cs >= 2 && re - rs === 1;
 
   return (
     <div
+      className="bento-cell"
       style={{
-        gridColumn: `${cs} / ${ce}`,
-        gridRow: `${rs} / ${re}`,
-        // Ghost placeholder — keeps grid gap intact while card is expanded
+        // Mobile: single column, no explicit grid placement
+        // Tablet & desktop positions via CSS custom properties
+        "--col-md": `${tcs} / ${tce}`,
+        "--row-md": `${trs} / ${tre}`,
+        "--col-lg": `${cs} / ${ce}`,
+        "--row-lg": `${rs} / ${re}`,
         visibility: isSelected ? "hidden" : "visible",
-      }}
+      } as React.CSSProperties}
     >
       <motion.div
         layoutId={`bento-${project.id}`}
@@ -198,7 +219,7 @@ function ExpandedCard({ project, onClose }: { project: Project; onClose: () => v
           style={{ background: `radial-gradient(ellipse 70% 40% at 50% 0%, ${project.accentColor}10 0%, transparent 70%)` }}
         />
 
-        <div className="relative z-10 p-7 md:p-9">
+        <div className="relative z-10 p-5 sm:p-7 md:p-9">
           {/* Close button */}
           <motion.button
             initial={{ opacity: 0, scale: 0.7 }}
@@ -227,7 +248,7 @@ function ExpandedCard({ project, onClose }: { project: Project; onClose: () => v
                 {project.status}
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight mb-2">
               {project.title}
             </h2>
             <p className="text-base font-mono mb-5" style={{ color: `${project.accentColor}80` }}>
@@ -249,9 +270,9 @@ function ExpandedCard({ project, onClose }: { project: Project; onClose: () => v
               style={{ borderColor: "rgba(255,255,255,0.05)" }}
             >
               {project.highlights.map((h) => (
-                <div key={h.label} className="flex items-center gap-3 text-sm">
-                  <span className="w-5 shrink-0">{h.icon}</span>
-                  <span className="text-[11px] font-mono text-white/25 w-24 shrink-0">{h.label}</span>
+                <div key={h.label} className="flex items-center gap-2 sm:gap-3 text-sm">
+                  <span className="w-5 shrink-0 hidden sm:block">{h.icon}</span>
+                  <span className="text-[11px] font-mono text-white/25 w-20 sm:w-24 shrink-0">{h.label}</span>
                   <span className="text-[11px] font-mono shrink-0" style={{ color: `${project.accentColor}50` }}>→</span>
                   <span className="text-sm text-white/55">{h.value}</span>
                 </div>
@@ -266,7 +287,7 @@ function ExpandedCard({ project, onClose }: { project: Project; onClose: () => v
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className="flex gap-8 mb-7"
+              className="flex flex-wrap gap-4 sm:gap-8 mb-7"
             >
               {project.metrics.map((m) => (
                 <div key={m.label}>
@@ -323,7 +344,7 @@ export function CaseStudies() {
   const close = useCallback(() => setSelected(null), []);
 
   return (
-    <section id="work" className="relative py-32 px-6">
+    <section id="work" className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-electric/20 to-transparent" />
 
       <div className="max-w-5xl mx-auto">
@@ -338,12 +359,12 @@ export function CaseStudies() {
           <motion.p variants={fadeUp} className="text-xs font-mono text-electric/60 tracking-[0.2em] uppercase mb-5">
             // 01 &nbsp; selected work
           </motion.p>
-          <div className="flex items-end justify-between gap-4">
-            <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold text-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-4">
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
               Case Studies
             </motion.h2>
-            <motion.p variants={fadeUp} className="text-xs font-mono text-white/15 pb-2 shrink-0">
-              click to expand
+            <motion.p variants={fadeUp} className="text-xs font-mono text-white/15 sm:pb-2 shrink-0">
+              tap to expand
             </motion.p>
           </div>
           <motion.p variants={fadeUp} className="text-muted/50 text-sm mt-3 max-w-lg leading-relaxed">
@@ -353,15 +374,14 @@ export function CaseStudies() {
 
         {/* Bento grid */}
         <LayoutGroup>
-          <div
-            className="grid gap-3"
-            style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
-          >
+          <div className="bento-cases">
             {PROJECTS.slice(0, 8).map((project, i) => (
               <BentoCard
                 key={project.id}
                 project={project}
-                gridPos={GRID[i]}
+                desktopPos={GRID_DESKTOP[i]}
+                tabletPos={GRID_TABLET[i]}
+                index={i}
                 isSelected={selected === project.id}
                 onSelect={() => setSelected(project.id)}
               />

@@ -11,7 +11,7 @@ import { fadeUp, staggerFast, viewportConfig } from "@/lib/animations";
 
 export function Skills() {
   return (
-    <section id="stack" className="relative py-32 px-6">
+    <section id="stack" className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
           eyebrow="// 02  the stack"

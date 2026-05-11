@@ -193,6 +193,34 @@ body {
   .bento-grid { grid-template-columns: 1fr; }
 }
 
+/* ─── Case Studies Bento ─────────────────────────────────────────────────── */
+.bento-cases {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr;
+}
+.bento-cell {
+  min-height: 160px;
+}
+@media (min-width: 640px) {
+  .bento-cases {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento-cell {
+    grid-column: var(--col-md);
+    grid-row: var(--row-md);
+  }
+}
+@media (min-width: 1024px) {
+  .bento-cases {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .bento-cell {
+    grid-column: var(--col-lg);
+    grid-row: var(--row-lg);
+  }
+}
+
 /* ─── Spotlight ──────────────────────────────────────────────────────────── */
 .spotlight-container { position: relative; overflow: hidden; }
 .spotlight-container::before {

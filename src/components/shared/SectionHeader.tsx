@@ -26,21 +26,21 @@ export function SectionHeader({
       whileInView="visible"
       viewport={viewportConfig}
       className={cn(
-        "mb-16",
+        "mb-10 sm:mb-14 lg:mb-16",
         align === "center" && "text-center",
         className,
       )}
     >
       {eyebrow && (
-        <p className="text-sm font-mono tracking-widest text-electric mb-3 uppercase">
+        <p className="text-xs sm:text-sm font-mono tracking-widest text-electric mb-3 uppercase">
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-muted text-base md:text-lg max-w-2xl leading-relaxed">
+        <p className="mt-3 sm:mt-4 text-muted text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
           {description}
         </p>
       )}

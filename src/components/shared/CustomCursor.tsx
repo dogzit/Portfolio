@@ -7,6 +7,11 @@ export function CustomCursor() {
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice(!window.matchMedia("(pointer: fine)").matches);
+  }, []);
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -47,6 +52,8 @@ export function CustomCursor() {
       document.removeEventListener("mouseenter", onEnter);
     };
   }, [mouseX, mouseY, visible]);
+
+  if (isTouchDevice) return null;
 
   return (
     <>

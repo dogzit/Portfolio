@@ -209,12 +209,12 @@ export function Hero() {
       </div>
 
       {/* ── Content ── */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 w-full">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28 lg:py-32 w-full">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-2 gap-16 items-center"
+          className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
         >
           {/* ── Left — Text ── */}
           <div>
@@ -233,7 +233,7 @@ export function Hero() {
             </motion.p>
             <motion.h1
               variants={fadeUp}
-              className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-3 leading-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-3 leading-none"
             >
               <span className="shimmer-text">Zolbayar</span>
             </motion.h1>
@@ -279,10 +279,10 @@ export function Hero() {
           </div>
 
           {/* ── Right — Photo + floating cards ── */}
-          <motion.div variants={fadeUp} className="flex flex-col items-center lg:items-end gap-6">
+          <motion.div variants={fadeUp} className="flex flex-col items-center lg:items-end gap-4 sm:gap-6 order-first lg:order-none">
 
             {/* Stat row — top */}
-            <div className="flex gap-3 self-stretch justify-end">
+            <div className="flex flex-wrap gap-2 sm:gap-3 self-stretch justify-center lg:justify-end">
               <StatCard
                 icon={Trophy}
                 value="2×"
@@ -325,7 +325,7 @@ function ProfilePhoto() {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden border w-full max-w-[320px]"
+      className="relative rounded-3xl overflow-hidden border w-[240px] sm:w-[280px] lg:w-[320px]"
       style={{
         background: "rgba(13,13,20,0.7)",
         backdropFilter: "blur(24px)",
