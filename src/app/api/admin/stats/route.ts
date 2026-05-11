@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import type { VisitorLog } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 // Protect with a secret key stored in env — set ADMIN_SECRET_KEY in Vercel dashboard
@@ -17,9 +18,9 @@ export async function GET(req: NextRequest) {
     prisma.contactSubmission.findMany({ orderBy: { createdAt: "desc" } }),
   ]);
 
-  const uniqueIps   = new Set(logs.map((l) => l.ip).filter(Boolean)).size;
-  const uniquePaths = new Set(logs.map((l) => l.path)).size;
-  const countryBreakdown = logs.reduce<Record<string, number>>((acc, l) => {
+  const uniqueIps   = new Set(logs.map((l: VisitorLog) => l.ip).filter(Boolean)).size;
+  const uniquePaths = new Set(logs.map((l: VisitorLog) => l.path)).size;
+  const countryBreakdown = logs.reduce<Record<string, number>>((acc, l: VisitorLog) => {
     const c = l.country ?? "Unknown";
     acc[c] = (acc[c] ?? 0) + 1;
     return acc;
