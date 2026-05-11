@@ -285,7 +285,7 @@ export function Hero() {
             <div className="flex gap-3 self-stretch justify-end">
               <StatCard
                 icon={Trophy}
-                value="Participated"
+                value="2×"
                 label="Hackathons"
                 color="#f59e0b"
                 delay={0.9}
@@ -325,14 +325,13 @@ function ProfilePhoto() {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden border"
+      className="relative rounded-3xl overflow-hidden border w-full max-w-[320px]"
       style={{
         background: "rgba(13,13,20,0.7)",
         backdropFilter: "blur(24px)",
         borderColor: "rgba(255,255,255,0.08)",
         boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 60px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.07)",
-        width: 320,
-        height: 380,
+        aspectRatio: "320 / 380",
       }}
     >
       {/* Inner glow ring */}
@@ -377,7 +376,7 @@ function ProfilePhoto() {
       <motion.div
         animate={{ y: [0, -5, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-3 top-8 rounded-xl px-3 py-2 border"
+        className="absolute -right-3 top-8 rounded-xl px-3 py-2 border hidden sm:block"
         style={{
           background: "rgba(13,13,20,0.85)",
           backdropFilter: "blur(16px)",
@@ -395,7 +394,7 @@ function ProfilePhoto() {
       <motion.div
         animate={{ y: [0, 5, 0] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute -left-3 bottom-24 rounded-xl px-3 py-2 border"
+        className="absolute -left-3 bottom-24 rounded-xl px-3 py-2 border hidden sm:block"
         style={{
           background: "rgba(13,13,20,0.85)",
           backdropFilter: "blur(16px)",
