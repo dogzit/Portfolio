@@ -19,7 +19,7 @@ export function Skills() {
           description="Every tool chosen deliberately. Frontend for experience, backend for power, workflow for speed."
         />
 
-        <BentoGrid className="lg:grid-cols-3">
+        <BentoGrid className="md:grid-cols-2 lg:grid-cols-4">
           {SKILLS.map((cat, i) => (
             <SkillCategoryCard key={cat.name} category={cat} delay={i * 0.12} />
           ))}

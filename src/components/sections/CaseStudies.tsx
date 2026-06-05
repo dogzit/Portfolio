@@ -20,26 +20,43 @@ const SPRING = { type: "spring" as const, stiffness: 280, damping: 26, mass: 0.7
 // ── Bento cell layout config (desktop 3-col grid) ────────────────────────────
 // Each entry: [colStart, colEnd, rowStart, rowEnd]
 const GRID_DESKTOP: [number, number, number, number][] = [
-  [1, 3, 1, 3], // 0 Smart Canteen  — large 2×2
-  [3, 4, 1, 2], // 1 RentlyMN       — right top
-  [3, 4, 2, 3], // 2 FitBet         — right mid
-  [1, 2, 3, 4], // 3 Open Mic       — small
-  [2, 3, 3, 4], // 4 School Hub     — small
-  [3, 4, 3, 4], // 5 IG Clone       — small
-  [1, 2, 4, 5], // 6 Pinetour       — small
-  [2, 4, 4, 5], // 7 Erhes Tenger   — wide 2×1
+  [1, 3, 1, 3], // 0 SIDEQUEST       — large 2×2
+  [3, 4, 1, 2], // 1 Surguuli        — right top
+  [3, 4, 2, 3], // 2 Smart Canteen   — right mid
+  [1, 2, 3, 4], // 3 RentlyMN        — small
+  [2, 3, 3, 4], // 4 FitBet          — small
+  [3, 4, 3, 4], // 5 Open Mic        — small
+  [1, 2, 4, 5], // 6 School Hub      — small
+  [2, 4, 4, 5], // 7 IG Clone        — wide 2×1
+  [1, 3, 5, 6], // 8 Pinetour        — wide 2×1
+  [3, 4, 5, 6], // 9 Erhes Tenger    — small
 ];
 
 // Tablet 2-col grid positions
 const GRID_TABLET: [number, number, number, number][] = [
-  [1, 3, 1, 3], // 0 Smart Canteen  — large 2×2
-  [1, 2, 3, 4], // 1 RentlyMN
-  [2, 3, 3, 4], // 2 FitBet
-  [1, 2, 4, 5], // 3 Open Mic
-  [2, 3, 4, 5], // 4 School Hub
-  [1, 2, 5, 6], // 5 IG Clone
-  [2, 3, 5, 6], // 6 Pinetour
-  [1, 3, 6, 7], // 7 Erhes Tenger   — wide 2×1
+  [1, 3, 1, 3], // 0 SIDEQUEST       — large 2×2
+  [1, 2, 3, 4], // 1 Surguuli
+  [2, 3, 3, 4], // 2 Smart Canteen
+  [1, 2, 4, 5], // 3 RentlyMN
+  [2, 3, 4, 5], // 4 FitBet
+  [1, 2, 5, 6], // 5 Open Mic
+  [2, 3, 5, 6], // 6 School Hub
+  [1, 3, 6, 7], // 7 IG Clone        — wide 2×1
+  [1, 2, 7, 8], // 8 Pinetour
+  [2, 3, 7, 8], // 9 Erhes Tenger
+];
+
+// ── Filter chips ──────────────────────────────────────────────────────────────
+type Filter = {
+  id: string;
+  label: string;
+  test: (p: Project) => boolean;
+};
+const FILTERS: Filter[] = [
+  { id: "all", label: "All", test: () => true },
+  { id: "live", label: "Live", test: (p) => p.status === "Live" },
+  { id: "wip", label: "In Progress", test: (p) => p.status === "In Progress" },
+  { id: "team", label: "Team Lead", test: (p) => p.tags.includes("Team Lead") },
 ];
 
 // ── Status badge ──────────────────────────────────────────────────────────────
@@ -88,12 +105,13 @@ function BentoCard({
       <motion.div
         layoutId={`bento-${project.id}`}
         onClick={onSelect}
-        className="relative h-full min-h-[140px] rounded-2xl overflow-hidden cursor-pointer group"
+        className="gradient-border relative h-full min-h-[140px] rounded-2xl overflow-hidden cursor-pointer group"
         style={{
           background: "rgba(13,13,20,0.8)",
           border: `1px solid rgba(255,255,255,0.07)`,
           backdropFilter: "blur(12px)",
-        }}
+          "--accent": `${project.accentColor}80`,
+        } as React.CSSProperties}
         whileHover={{ scale: 1.018, transition: { duration: 0.2 } }}
         whileTap={{ scale: 0.97 }}
         transition={SPRING}
@@ -176,6 +194,73 @@ function BentoCard({
         </div>
       </motion.div>
     </div>
+  );
+}
+
+// ── Flat card (uniform grid view used when filtering) ────────────────────────
+function FlatCard({
+  project,
+  index,
+  isSelected,
+  onSelect,
+}: {
+  project: Project;
+  index: number;
+  isSelected: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 12 }}
+      transition={{ duration: 0.28, delay: index * 0.04, ease: [0.25, 0.46, 0.45, 0.94] }}
+      style={{ visibility: isSelected ? "hidden" : "visible" }}
+    >
+      <motion.div
+        layoutId={`bento-${project.id}`}
+        onClick={onSelect}
+        whileHover={{ scale: 1.018 }}
+        whileTap={{ scale: 0.97 }}
+        transition={SPRING}
+        className="gradient-border relative rounded-2xl overflow-hidden cursor-pointer group min-h-[180px] h-full"
+        style={{
+          background: "rgba(13,13,20,0.8)",
+          border: "1px solid rgba(255,255,255,0.07)",
+          backdropFilter: "blur(12px)",
+          "--accent": `${project.accentColor}80`,
+        } as React.CSSProperties}
+      >
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse 80% 60% at 0% 0%, ${project.accentColor}18 0%, transparent 70%)`,
+          }}
+        />
+        <div
+          className="absolute left-0 top-4 bottom-4 w-0.5 rounded-full opacity-40 group-hover:opacity-100 transition-opacity duration-300"
+          style={{ background: `linear-gradient(to bottom, transparent, ${project.accentColor}, transparent)` }}
+        />
+        <div className="relative z-10 flex flex-col h-full p-5">
+          <div className="flex items-center justify-between mb-auto">
+            <div className="flex items-center gap-2">
+              <StatusDot status={project.status} color={project.accentColor} />
+              <span className="text-[10px] font-mono text-white/25 tracking-wider">{project.year}</span>
+            </div>
+            <ArrowUpRight size={14} className="text-white/15 group-hover:text-white/50 transition-colors" />
+          </div>
+          <div className="mt-4">
+            <h3 className="font-bold leading-tight text-base text-white/80 group-hover:text-white transition-colors">
+              {project.title}
+            </h3>
+            <p className="mt-1 font-mono text-xs" style={{ color: `${project.accentColor}70` }}>
+              {project.tagline}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -339,9 +424,14 @@ function ExpandedCard({ project, onClose }: { project: Project; onClose: () => v
 // ── Section ───────────────────────────────────────────────────────────────────
 export function CaseStudies() {
   const [selected, setSelected] = useState<string | null>(null);
+  const [filterId, setFilterId] = useState<string>("all");
   const selectedProject = PROJECTS.find((p) => p.id === selected) ?? null;
 
   const close = useCallback(() => setSelected(null), []);
+
+  const filter = FILTERS.find((f) => f.id === filterId) ?? FILTERS[0];
+  const filtered = PROJECTS.filter(filter.test);
+  const bentoProjects = PROJECTS.slice(0, GRID_DESKTOP.length);
 
   return (
     <section id="work" className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6">
@@ -354,10 +444,10 @@ export function CaseStudies() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="mb-12"
+          className="mb-8"
         >
           <motion.p variants={fadeUp} className="text-xs font-mono text-electric/60 tracking-[0.2em] uppercase mb-5">
-            // 01 &nbsp; selected work
+            {"// 01"} &nbsp; selected work
           </motion.p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-4">
             <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">
@@ -372,21 +462,84 @@ export function CaseStudies() {
           </motion.p>
         </motion.div>
 
-        {/* Bento grid */}
-        <LayoutGroup>
-          <div className="bento-cases">
-            {PROJECTS.slice(0, 8).map((project, i) => (
-              <BentoCard
-                key={project.id}
-                project={project}
-                desktopPos={GRID_DESKTOP[i]}
-                tabletPos={GRID_TABLET[i]}
-                index={i}
-                isSelected={selected === project.id}
-                onSelect={() => setSelected(project.id)}
-              />
-            ))}
-          </div>
+        {/* Filter chips */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportConfig}
+          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="flex flex-wrap items-center gap-2 mb-8"
+        >
+          <LayoutGroup id="filter-chips">
+            {FILTERS.map((f) => {
+              const count = PROJECTS.filter(f.test).length;
+              const active = filterId === f.id;
+              return (
+                <button
+                  key={f.id}
+                  onClick={() => setFilterId(f.id)}
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors ${
+                    active ? "text-electric-bright" : "text-white/40 hover:text-white/70"
+                  }`}
+                >
+                  {active && (
+                    <motion.span
+                      layoutId="filter-pill"
+                      className="absolute inset-0 rounded-full bg-electric/10 border border-electric/25"
+                      transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-2">
+                    {f.label}
+                    <span className={`text-[10px] ${active ? "text-electric-bright/70" : "text-white/25"}`}>
+                      {count}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+          </LayoutGroup>
+        </motion.div>
+
+        {/* Grid */}
+        <LayoutGroup id="case-studies-grid">
+          {filterId === "all" ? (
+            <motion.div layout className="bento-cases">
+              {bentoProjects.map((project, i) => (
+                <BentoCard
+                  key={project.id}
+                  project={project}
+                  desktopPos={GRID_DESKTOP[i]}
+                  tabletPos={GRID_TABLET[i]}
+                  index={i}
+                  isSelected={selected === project.id}
+                  onSelect={() => setSelected(project.id)}
+                />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              layout
+              className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            >
+              <AnimatePresence mode="popLayout">
+                {filtered.map((project, i) => (
+                  <FlatCard
+                    key={project.id}
+                    project={project}
+                    index={i}
+                    isSelected={selected === project.id}
+                    onSelect={() => setSelected(project.id)}
+                  />
+                ))}
+              </AnimatePresence>
+              {filtered.length === 0 && (
+                <p className="text-sm font-mono text-white/30 col-span-full py-12 text-center">
+                  No projects match this filter.
+                </p>
+              )}
+            </motion.div>
+          )}
 
           {/* Expanded overlay */}
           <AnimatePresence>

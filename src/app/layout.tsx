@@ -4,6 +4,9 @@ import "./globals.css";
 import { CustomCursor } from "@/components/shared/CustomCursor";
 import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { LoadingScreen } from "@/components/shared/LoadingScreen";
+import { ConsoleSignature } from "@/components/shared/ConsoleSignature";
+import { KonamiEasterEgg } from "@/components/shared/KonamiEasterEgg";
+import { CommandPalette } from "@/components/shared/CommandPalette";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Zolbayar — Full-Stack Developer",
   description:
-    "17-year-old full-stack developer from Mongolia. Team leader, hackathon winner, FinTech intern — building real products with Next.js, Prisma, and TypeScript.",
+    "17-year-old full-stack developer from Mongolia. Team leader and FinTech intern — building real products with Next.js, Prisma, and TypeScript.",
   keywords: [
     "Zolbayar", "Zoloo", "dogzit", "Full-Stack Developer", "Mongolia",
     "Next.js", "TypeScript", "Prisma", "Portfolio", "17 year old developer",
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zolbayar — Full-Stack Developer",
     description:
-      "17-year-old full-stack developer. Team leader, hackathon winner, FinTech intern.",
+      "17-year-old full-stack developer. Team leader and FinTech intern.",
     images: ["/images/profile.jpg"],
   },
 };
@@ -54,6 +57,9 @@ export default function RootLayout({
         <LoadingScreen />
         <ScrollProgress />
         <CustomCursor />
+        <ConsoleSignature />
+        <KonamiEasterEgg />
+        <CommandPalette />
         {children}
       </body>
     </html>

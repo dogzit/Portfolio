@@ -5,23 +5,59 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NAV_ITEMS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/shared/MagneticButton";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { CommandPaletteHint } from "@/components/shared/CommandPalette";
+import { Menu, X, ArrowUpRight, Search } from "lucide-react";
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
-        });
-      },
-      { threshold: 0.4 },
-    );
-    document.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+    const sections = Array.from(document.querySelectorAll<HTMLElement>("section[id]"));
+    if (sections.length === 0) return;
+
+    // Pick whichever section currently crosses an imaginary trigger line ~30%
+    // down the viewport. This is robust for sections that are taller than the
+    // viewport (e.g. Journey), where IntersectionObserver area thresholds fail.
+    let rafId = 0;
+    const update = () => {
+      const trigger = window.innerHeight * 0.3;
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 80;
+
+      let current = sections[0];
+      if (nearBottom) {
+        current = sections[sections.length - 1];
+      } else {
+        for (const s of sections) {
+          const { top, bottom } = s.getBoundingClientRect();
+          if (top <= trigger && bottom > trigger) {
+            current = s;
+            break;
+          }
+        }
+      }
+      setActiveSection(`#${current.id}`);
+    };
+
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        update();
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Close on scroll
@@ -72,7 +108,7 @@ export function Navbar() {
                 {activeSection === item.href && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-xl bg-white/5 border border-white/8"
+                    className="absolute inset-0 rounded-xl bg-electric/10 border border-electric/25 shadow-[0_0_18px_rgba(59,130,246,0.18)]"
                     transition={{ type: "spring", stiffness: 400, damping: 35 }}
                   />
                 )}
@@ -80,6 +116,24 @@ export function Navbar() {
               </button>
             ))}
           </div>
+
+          {/* ⌘K hint (desktop) */}
+          <button
+            type="button"
+            onClick={() => {
+              window.dispatchEvent(
+                new KeyboardEvent("keydown", { key: "k", metaKey: true }),
+              );
+            }}
+            aria-label="Open command palette"
+            className="hidden lg:flex items-center gap-2 ml-2 px-2.5 py-1.5 rounded-lg border border-white/[0.07] hover:border-electric/30 text-white/40 hover:text-white/80 transition-colors text-[10px] font-mono"
+            title="Command palette"
+          >
+            <Search size={11} />
+            <span className="flex items-center gap-1">
+              <CommandPaletteHint />
+            </span>
+          </button>
 
           {/* Desktop CTA */}
           <MagneticButton

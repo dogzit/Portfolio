@@ -10,10 +10,101 @@ import {
 } from "framer-motion";
 import { ArrowDown, Download, Sparkles, Zap, Trophy, Code2 } from "lucide-react";
 import Image from "next/image";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 import { BIO } from "@/lib/data";
+import { useReducedMotion } from "@/lib/useReducedMotion";
+
+// ── Animated counter ─────────────────────────────────────────────────────────
+function AnimatedValue({ value, delay = 0 }: { value: string; delay?: number }) {
+  const numericMatch = value.match(/^(\d+)/);
+  const suffix = value.replace(/^\d+/, "");
+  const target = numericMatch ? parseInt(numericMatch[1], 10) : 0;
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setStarted(true), delay * 1000);
+    return () => clearTimeout(t);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!started || target === 0) return;
+    const duration = 1200;
+    const steps = 30;
+    const stepTime = duration / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current++;
+      const progress = current / steps;
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (current >= steps) clearInterval(interval);
+    }, stepTime);
+    return () => clearInterval(interval);
+  }, [started, target]);
+
+  if (!numericMatch) return <>{value}</>;
+  return <>{started ? count : 0}{suffix}</>;
+}
+
+// ── Character reveal for name ────────────────────────────────────────────────
+function CharReveal({ text, className = "" }: { text: string; className?: string }) {
+  return (
+    <span className={className}>
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 40, rotateX: -90 }}
+          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+          transition={{
+            delay: 0.4 + i * 0.06,
+            duration: 0.5,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          className="inline-block"
+          style={{ transformOrigin: "bottom" }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
+// ── Floating particles ───────────────────────────────────────────────────────
+function FloatingParticles() {
+  const particles = useMemo(() =>
+    Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      size: Math.random() * 3 + 1,
+      duration: Math.random() * 15 + 10,
+      delay: Math.random() * 10,
+      opacity: Math.random() * 0.3 + 0.1,
+    })), []
+  );
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="absolute rounded-full"
+          style={{
+            left: p.left,
+            bottom: "-10px",
+            width: p.size,
+            height: p.size,
+            background: `rgba(59, 130, 246, ${p.opacity})`,
+            animation: `float-particle ${p.duration}s ${p.delay}s linear infinite`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 // ── Spring config ──────────────────────────────────────────────────────────────
 const SPRING = { stiffness: 240, damping: 22, mass: 0.6 };
@@ -171,7 +262,7 @@ function StatCard({
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", ...SPRING }}
             >
-              {value}
+              <AnimatedValue value={value} delay={delay} />
             </motion.p>
             <p className="text-[10px] text-white/30 font-mono mt-0.5">{label}</p>
           </div>
@@ -183,6 +274,7 @@ function StatCard({
 
 // ── Main Hero ──────────────────────────────────────────────────────────────────
 export function Hero() {
+  const reduced = useReducedMotion();
   return (
     <section
       id="hero"
@@ -191,11 +283,15 @@ export function Hero() {
     >
       {/* ── Animated gradient mesh ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <MeshBlob color="rgba(59,130,246,0.12)" size={600} x={["10%", "35%", "15%"]} y={["5%", "20%", "10%"]} duration={18} />
-        <MeshBlob color="rgba(139,92,246,0.09)" size={500} x={["60%", "75%", "55%"]} y={["10%", "30%", "5%"]} duration={22} delay={3} />
-        <MeshBlob color="rgba(6,182,212,0.07)" size={400} x={["20%", "5%", "40%"]} y={["60%", "75%", "55%"]} duration={20} delay={6} />
-        <MeshBlob color="rgba(59,130,246,0.06)" size={350} x={["70%", "55%", "80%"]} y={["65%", "50%", "80%"]} duration={25} delay={2} />
-        <MeshBlob color="rgba(168,85,247,0.05)" size={300} x={["40%", "60%", "30%"]} y={["40%", "55%", "35%"]} duration={19} delay={8} />
+        {!reduced && (
+          <>
+            <MeshBlob color="rgba(59,130,246,0.12)" size={600} x={["10%", "35%", "15%"]} y={["5%", "20%", "10%"]} duration={18} />
+            <MeshBlob color="rgba(139,92,246,0.09)" size={500} x={["60%", "75%", "55%"]} y={["10%", "30%", "5%"]} duration={22} delay={3} />
+            <MeshBlob color="rgba(6,182,212,0.07)" size={400} x={["20%", "5%", "40%"]} y={["60%", "75%", "55%"]} duration={20} delay={6} />
+            <MeshBlob color="rgba(59,130,246,0.06)" size={350} x={["70%", "55%", "80%"]} y={["65%", "50%", "80%"]} duration={25} delay={2} />
+            <MeshBlob color="rgba(168,85,247,0.05)" size={300} x={["40%", "60%", "30%"]} y={["40%", "55%", "35%"]} duration={19} delay={8} />
+          </>
+        )}
 
         {/* Grid overlay */}
         <div
@@ -206,6 +302,9 @@ export function Hero() {
             backgroundSize: "64px 64px",
           }}
         />
+
+        {/* Floating particles */}
+        {!reduced && <FloatingParticles />}
       </div>
 
       {/* ── Content ── */}
@@ -218,13 +317,21 @@ export function Hero() {
         >
           {/* ── Left — Text ── */}
           <div>
-            {/* Availability badge */}
-            <motion.div variants={fadeUp} className="flex items-center gap-2 mb-8">
+            {/* Availability + Now building badges */}
+            <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 mb-8">
               <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono border"
                 style={{ background: "rgba(59,130,246,0.08)", borderColor: "rgba(59,130,246,0.22)", color: "#93c5fd" }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Open to opportunities
               </span>
+              <a
+                href="#work"
+                className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono border transition-all hover:scale-[1.03]"
+                style={{ background: "rgba(217,70,239,0.07)", borderColor: "rgba(217,70,239,0.25)", color: "#f0abfc" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 animate-pulse" />
+                Now building → SIDEQUEST
+              </a>
             </motion.div>
 
             {/* Name */}
@@ -235,7 +342,7 @@ export function Hero() {
               variants={fadeUp}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-3 leading-none"
             >
-              <span className="shimmer-text">Zolbayar</span>
+              <CharReveal text="Zolbayar" className="shimmer-text" />
             </motion.h1>
             <motion.h2 variants={fadeUp} className="text-xl md:text-2xl font-semibold text-white/40 mb-7">
               <RoleCycler />
@@ -264,7 +371,7 @@ export function Hero() {
                   Let&apos;s Talk
                 </span>
               </MagneticButton>
-              <MagneticButton href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <MagneticButton href="/api/resume" target="_blank" rel="noopener noreferrer">
                 <span className="flex items-center gap-2 px-5 py-3 rounded-xl text-white/40 font-medium text-sm border border-white/[0.07] hover:border-white/15 hover:text-white/70 transition-all duration-200">
                   <Download size={14} />
                   Resume
@@ -285,12 +392,12 @@ export function Hero() {
             <div className="flex flex-wrap gap-2 sm:gap-3 self-stretch justify-center lg:justify-end">
               <StatCard
                 icon={Trophy}
-                value="2×"
-                label="Hackathons"
+                value="3"
+                label="Teams Led"
                 color="#f59e0b"
                 delay={0.9}
               />
-              <StatCard icon={Code2} value="15+" label="Projects" color="#60a5fa" delay={1.0} />
+              <StatCard icon={Code2} value="10+" label="Projects" color="#60a5fa" delay={1.0} />
               <StatCard icon={Zap} value="17" label="Years old" color="#a78bfa" delay={1.1} />
             </div>
 

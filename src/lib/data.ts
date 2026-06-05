@@ -26,6 +26,94 @@ export const NAV_ITEMS: NavItem[] = [
 // ─── Projects ─────────────────────────────────────────────────────────────────
 export const PROJECTS: Project[] = [
   {
+    id: "sidequest",
+    title: "SIDEQUEST",
+    tagline: "Real-Life Social RPG",
+    description:
+      "A mobile-first social RPG where friends form lobbies and complete real-world side quests for XP and coins. Combines RPG mechanics—character classes, leaderboards, cosmetics—with EXIF-verified photo proof, peer veto voting, live location maps, and an in-browser ML pushup counter. Built to reduce screen time by turning everyday actions into a shared game.",
+    focus: "Full-Stack Ownership, Real-Time Systems & Anti-Cheat Architecture",
+    tags: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Prisma 7",
+      "Neon DB",
+      "Pusher",
+      "TensorFlow.js",
+      "PWA",
+    ],
+    year: "2026",
+    status: "In Progress",
+    gradient: "from-fuchsia-600/20 via-purple-600/10 to-transparent",
+    accentColor: "#d946ef",
+    highlights: [
+      {
+        icon: "🎮",
+        label: "Mechanic",
+        value: "Real-world quests with XP, coins & classes",
+      },
+      {
+        icon: "🛡️",
+        label: "Anti-Cheat",
+        value: "EXIF photo gate + peer veto voting",
+      },
+      {
+        icon: "🤖",
+        label: "In-Browser ML",
+        value: "TensorFlow.js pose-detection pushup counter",
+      },
+    ],
+    metrics: [
+      { label: "Prisma Models", value: "20", delta: "" },
+      { label: "App / API Routes", value: "23+ / 23+", delta: "" },
+      { label: "Core Features", value: "14", delta: "" },
+    ],
+    links: {},
+  },
+  {
+    id: "surguuli",
+    title: "Surguuli",
+    tagline: "Digital Sign-Off for Teacher Clearance",
+    description:
+      "A web app digitizing the traditional end-of-semester 'тойрох хуудас'—the paper checklist Mongolian teachers carry between librarians, accountants, doctors, social workers, principals, and others to collect signatures. Role-based access for three user types, PIN-code auth with HMAC sessions, progress tracking, and Excel bulk import/export. Built almost entirely on Next.js Server Actions—no REST.",
+    focus: "Server Actions Architecture & Role-Based Workflow Design",
+    tags: [
+      "Next.js 14",
+      "TypeScript",
+      "Server Actions",
+      "Prisma",
+      "PostgreSQL",
+      "Tailwind",
+    ],
+    year: "2026",
+    status: "Live",
+    gradient: "from-cyan-600/20 via-teal-600/10 to-transparent",
+    accentColor: "#06b6d4",
+    highlights: [
+      {
+        icon: "✍️",
+        label: "Domain",
+        value: "Replaces paper signature workflow end-to-end",
+      },
+      {
+        icon: "🔐",
+        label: "Auth",
+        value: "Custom PIN + HMAC-signed sessions, 3 role types",
+      },
+      {
+        icon: "📊",
+        label: "Ops",
+        value: "Bulk Excel import/export & live progress tracking",
+      },
+    ],
+    metrics: [
+      { label: "Approver Roles", value: "7", delta: "" },
+      { label: "Architecture", value: "Server Actions", delta: "" },
+      { label: "Target Users", value: "MN K-12 Schools", delta: "" },
+    ],
+    links: {},
+  },
+  {
     id: "smart-canteen",
     title: "Smart Canteen",
     tagline: "Rapid-Build School Ecosystem",
@@ -316,13 +404,23 @@ export const SKILLS: SkillCategory[] = [
     ],
   },
   {
-    name: "Backend & Dev Ops",
+    name: "Backend & Server Actions",
     icon: "⬡",
     skills: [
       { name: "Node.js", level: 85, color: "#6dbf67" },
       { name: "Prisma / Neon", level: 88, color: "#5a67d8" },
       { name: "PostgreSQL", level: 82, color: "#336791" },
-      { name: "Auth.js", level: 78, color: "#ec4899" },
+      { name: "Server Actions", level: 86, color: "#94a3b8" },
+    ],
+  },
+  {
+    name: "Realtime & AI",
+    icon: "◉",
+    skills: [
+      { name: "Pusher", level: 78, color: "#7c3aed" },
+      { name: "Web Push", level: 74, color: "#f97316" },
+      { name: "TensorFlow.js", level: 70, color: "#ff6f00" },
+      { name: "Google GenAI", level: 76, color: "#34a853" },
     ],
   },
   {
