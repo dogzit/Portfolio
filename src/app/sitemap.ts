@@ -13,11 +13,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: hash === "" ? 1 : 0.7,
     })),
-    {
-      url: `${SITE_URL}/now`,
-      lastModified: now,
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    },
   ];
 }

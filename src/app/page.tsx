@@ -1,30 +1,45 @@
-import { Navbar }      from "@/components/layout/Navbar";
-import { Footer }      from "@/components/layout/Footer";
-import { Hero }        from "@/components/sections/Hero";
+import { Suspense } from "react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { StatusBar } from "@/components/layout/StatusBar";
+import { Hero } from "@/components/sections/Hero";
 import { CaseStudies } from "@/components/sections/CaseStudies";
-import { Skills }      from "@/components/sections/Skills";
-import { Journey }     from "@/components/sections/Journey";
-import { Contact }     from "@/components/sections/Contact";
+import { Skills } from "@/components/sections/Skills";
+import { Activity } from "@/components/sections/Activity";
+import { Journey } from "@/components/sections/Journey";
+import { Contact } from "@/components/sections/Contact";
+import { ScrollProgress } from "@/components/shared/ScrollProgress";
+import { Marquee } from "@/components/shared/Marquee";
+import { PROJECTS, SKILLS } from "@/lib/data";
 
-function SectionDivider() {
-  return <div className="section-divider" />;
-}
+const STACK_TICKER = SKILLS.flatMap((c) => c.skills.map((s) => s.name));
+const WORK_TICKER = PROJECTS.map((p) => p.title);
 
 export default function Home() {
   return (
     <div className="relative bg-background text-foreground">
+      {/* Streams on its own so a slow GitHub call never blocks first paint. */}
+      <Suspense fallback={<div style={{ height: "var(--status-h)" }} />}>
+        <StatusBar />
+      </Suspense>
+      <ScrollProgress />
       <Navbar />
-      <main>
+
+      <main className="frame">
         <Hero />
-        <SectionDivider />
+        <Marquee items={WORK_TICKER} />
         <CaseStudies />
-        <SectionDivider />
+        <Marquee items={STACK_TICKER} reverse />
         <Skills />
-        <SectionDivider />
+        <Suspense fallback={null}>
+          <Activity />
+        </Suspense>
+        <hr className="rule" />
         <Journey />
-        <SectionDivider />
+        <hr className="rule" />
         <Contact />
       </main>
+
       <Footer />
     </div>
   );

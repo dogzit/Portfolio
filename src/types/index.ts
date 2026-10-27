@@ -35,14 +35,17 @@ export interface ProjectLinks {
 export interface SkillCategory {
   name: string;
   icon: string;
+  /** One-line context shown under the category name. */
+  note?: string;
   skills: Skill[];
 }
 
 export interface Skill {
   name: string;
-  level: number; // 0-100
+  /** What backs the claim — a count, a project, a schema size. Shown verbatim. */
+  evidence: string;
   icon?: string;
-  color: string;
+  color?: string;
 }
 
 export interface TimelineEvent {

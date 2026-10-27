@@ -15,126 +15,79 @@ export default async function OG() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background:
-            "radial-gradient(circle at 18% 10%, rgba(59,130,246,0.35), transparent 55%)," +
-            "radial-gradient(circle at 88% 90%, rgba(139,92,246,0.30), transparent 55%)," +
-            "radial-gradient(circle at 60% 30%, rgba(6,182,212,0.18), transparent 55%)," +
-            "#050508",
-          color: "#fff",
-          fontFamily: "sans-serif",
+          background: "#f7f4ee",
+          color: "#211d19",
+          fontFamily: "Georgia, serif",
           position: "relative",
         }}
       >
-        {/* Grid overlay */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            opacity: 0.05,
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px)," +
-              "linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        {/* Top: brand row */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, zIndex: 1 }}>
+        {/* Top row */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              padding: "10px 18px",
+              width: 10,
+              height: 10,
               borderRadius: 999,
-              background: "rgba(59,130,246,0.10)",
-              border: "1px solid rgba(59,130,246,0.30)",
-              color: "#93c5fd",
-              fontSize: 22,
-              fontFamily: "monospace",
+              background: "#4f7a52",
+              display: "flex",
             }}
-          >
-            <div
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: 999,
-                background: "#4ade80",
-              }}
-            />
-            Open to opportunities
-          </div>
+          />
+          <span style={{ fontSize: 24, color: "#7b7369", display: "flex" }}>
+            Available for internships
+          </span>
         </div>
 
-        {/* Middle: title block */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            zIndex: 1,
-            marginTop: 40,
-          }}
-        >
-          <div
+        {/* Title block */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <span
             style={{
-              fontSize: 28,
-              color: "rgba(255,255,255,0.35)",
+              fontSize: 26,
+              color: "#7b7369",
               fontFamily: "monospace",
               letterSpacing: 6,
               textTransform: "uppercase",
-              marginBottom: 22,
+              marginBottom: 20,
+              display: "flex",
             }}
           >
-            {"// full-stack developer · mongolia"}
-          </div>
-          <div
+            Full-stack developer · Mongolia
+          </span>
+          <span
             style={{
-              fontSize: 140,
-              fontWeight: 900,
+              fontSize: 150,
               lineHeight: 1,
               letterSpacing: -4,
-              background:
-                "linear-gradient(90deg, #ffffff 0%, #93c5fd 50%, #c4b5fd 100%)",
-              backgroundClip: "text",
-              color: "transparent",
+              display: "flex",
             }}
           >
-            Zolbayar
-          </div>
-          <div
+            Zolbayar.
+          </span>
+          <span
             style={{
-              fontSize: 38,
-              color: "rgba(255,255,255,0.6)",
-              marginTop: 22,
-              maxWidth: 960,
-              lineHeight: 1.25,
+              fontSize: 36,
+              color: "#4b443c",
+              marginTop: 24,
+              maxWidth: 900,
+              lineHeight: 1.3,
+              display: "flex",
             }}
           >
-            17 y/o engineer · Team Lead · building real products with
-            Next.js, Prisma & TypeScript.
-          </div>
+            17 years old. Started with a burger game tutorial at 13, now leading teams and shipping real products.
+          </span>
         </div>
 
-        {/* Bottom: meta strip */}
+        {/* Bottom row */}
         <div
           style={{
             display: "flex",
-            alignItems: "center",
             justifyContent: "space-between",
-            zIndex: 1,
             fontFamily: "monospace",
             fontSize: 24,
-            color: "rgba(255,255,255,0.4)",
+            color: "#7b7369",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <span style={{ color: "#60a5fa", fontWeight: 700 }}>zoloo</span>
-            <span style={{ color: "rgba(255,255,255,0.25)" }}>.dev</span>
-          </div>
-          <div style={{ display: "flex", gap: 28 }}>
-            <span>github.com/dogzit</span>
-          </div>
+          <span style={{ display: "flex" }}>github.com/dogzit</span>
+          <span style={{ display: "flex", color: "#8a5436" }}>bolorzoloko@gmail.com</span>
         </div>
       </div>
     ),

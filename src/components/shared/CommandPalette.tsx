@@ -12,7 +12,6 @@ import {
   MessageSquare,
   Phone,
   Search,
-  Sparkles,
   Layers,
   FolderKanban,
 } from "lucide-react";
@@ -64,9 +63,9 @@ export function CommandPalette() {
     const base: Cmd[] = [
       { id: "nav-work", label: "Go to Work", hint: "#work", group: "Navigate", icon: FolderKanban, action: () => scrollTo("#work") },
       { id: "nav-stack", label: "Go to Stack", hint: "#stack", group: "Navigate", icon: Layers, action: () => scrollTo("#stack") },
+      { id: "nav-activity", label: "Go to Activity", hint: "#activity", group: "Navigate", icon: GitBranch, action: () => scrollTo("#activity") },
       { id: "nav-journey", label: "Go to Journey", hint: "#journey", group: "Navigate", icon: Compass, action: () => scrollTo("#journey") },
       { id: "nav-contact", label: "Go to Contact", hint: "#contact", group: "Navigate", icon: MessageSquare, action: () => scrollTo("#contact") },
-      { id: "nav-now", label: "What I'm doing now", hint: "/now", group: "Navigate", icon: Sparkles, action: () => { close(); router.push("/now"); } },
       { id: "copy-email", label: "Copy email", hint: "bolorzoloko@gmail.com", group: "Contact", icon: Mail, action: async () => {
         try { await navigator.clipboard.writeText("bolorzoloko@gmail.com"); } catch { /* ignore */ }
         close();
@@ -85,7 +84,7 @@ export function CommandPalette() {
       action: () => scrollTo("#work"),
     }));
     return [...base, ...projectCmds];
-  }, [close, router, scrollTo]);
+  }, [close, scrollTo]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -95,7 +94,7 @@ export function CommandPalette() {
     );
   }, [commands, query]);
 
-  // Toggle on ⌘K / Ctrl+K
+  // Toggle on ⌘K / Ctrl+K, or when the navbar asks for it
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -106,8 +105,13 @@ export function CommandPalette() {
         close();
       }
     };
+    const onRequest = () => setOpen(true);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("palette:open", onRequest);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("palette:open", onRequest);
+    };
   }, [open, close]);
 
   const onQuery = useCallback((value: string) => {
@@ -177,8 +181,8 @@ export function CommandPalette() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
             onClick={close}
-            className="fixed inset-0 z-[10000] flex items-start justify-center p-4 pt-[12vh]"
-            style={{ background: "rgba(5,5,8,0.55)", backdropFilter: "blur(8px)" }}
+            className="fixed inset-0 z-[10000] flex items-start justify-center p-4 pt-[12vh] backdrop-blur-[2px]"
+            style={{ background: "color-mix(in srgb, var(--background) 45%, rgba(20,16,12,0.55))" }}
           >
             <motion.div
               key="panel"
@@ -187,30 +191,28 @@ export function CommandPalette() {
               exit={{ opacity: 0, y: -8, scale: 0.97 }}
               transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-xl rounded-2xl overflow-hidden border"
+              className="w-full max-w-xl rounded-xl overflow-hidden border"
               style={{
-                background: "rgba(10,10,16,0.95)",
-                backdropFilter: "blur(24px)",
-                borderColor: "rgba(255,255,255,0.08)",
-                boxShadow:
-                  "0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(59,130,246,0.12)",
+                background: "var(--surface)",
+                borderColor: "var(--border)",
+                boxShadow: "var(--shadow-lg)",
               }}
               role="dialog"
               aria-label="Command palette"
             >
-              <div className="h-px bg-gradient-to-r from-transparent via-electric/40 to-transparent" />
+              <div className="h-px bg-border" />
 
               {/* Search */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-white/[0.05]">
-                <Search size={16} className="text-white/30" />
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+                <Search size={16} className="text-muted" />
                 <input
                   ref={inputRef}
                   value={query}
                   onChange={(e) => onQuery(e.target.value)}
                   placeholder="Search… (try project name, 'email', or 'now')"
-                  className="flex-1 bg-transparent outline-none text-sm text-white/90 placeholder:text-white/25"
+                  className="flex-1 bg-transparent outline-none text-sm text-foreground placeholder:text-muted/50"
                 />
-                <kbd className="hidden sm:inline-block text-[10px] font-mono text-white/30 px-1.5 py-0.5 rounded border border-white/10">
+                <kbd className="hidden sm:inline-block text-[10px] font-mono text-muted px-1.5 py-0.5 rounded border border-border">
                   ESC
                 </kbd>
               </div>
@@ -218,7 +220,7 @@ export function CommandPalette() {
               {/* Results */}
               <ul ref={listRef} className="max-h-[55vh] overflow-y-auto p-2">
                 {filtered.length === 0 && (
-                  <li className="py-8 text-center text-xs font-mono text-white/30">
+                  <li className="py-8 text-center text-xs font-mono text-muted">
                     No matches for &ldquo;{query}&rdquo;
                   </li>
                 )}
@@ -229,7 +231,7 @@ export function CommandPalette() {
                   if (items.length === 0) return null;
                   return (
                     <li key={g} className="mb-2 last:mb-0">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/25 px-3 pt-2 pb-1">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted/70 px-3 pt-2 pb-1">
                         {g}
                       </p>
                       <ul>
@@ -240,21 +242,17 @@ export function CommandPalette() {
                               <button
                                 onMouseEnter={() => setActive(i)}
                                 onClick={() => c.action()}
-                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-colors ${
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors ${
                                   isActive
-                                    ? "bg-electric/10 text-white"
-                                    : "text-white/65 hover:text-white"
+                                    ? "bg-surface-2 text-foreground"
+                                    : "text-foreground/70 hover:text-foreground"
                                 }`}
                               >
                                 <span
-                                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                                  className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border"
                                   style={{
-                                    background: isActive
-                                      ? "rgba(59,130,246,0.18)"
-                                      : "rgba(255,255,255,0.04)",
-                                    border: isActive
-                                      ? "1px solid rgba(59,130,246,0.35)"
-                                      : "1px solid rgba(255,255,255,0.06)",
+                                    background: isActive ? "var(--surface-2)" : "transparent",
+                                    borderColor: isActive ? "var(--border-hover)" : "var(--border)",
                                   }}
                                 >
                                   <c.icon size={13} />
@@ -262,13 +260,13 @@ export function CommandPalette() {
                                 <span className="flex-1 min-w-0">
                                   <span className="block text-sm truncate">{c.label}</span>
                                   {c.hint && (
-                                    <span className="block text-[11px] font-mono text-white/30 truncate">
+                                    <span className="block text-[11px] font-mono text-muted/70 truncate">
                                       {c.hint}
                                     </span>
                                   )}
                                 </span>
                                 {isActive && (
-                                  <ArrowUpRight size={12} className="text-electric-bright shrink-0" />
+                                  <ArrowUpRight size={12} className="text-accent shrink-0" />
                                 )}
                               </button>
                             </li>
@@ -281,15 +279,15 @@ export function CommandPalette() {
               </ul>
 
               {/* Footer hint */}
-              <div className="flex items-center justify-between px-4 py-2 border-t border-white/[0.05] text-[10px] font-mono text-white/30">
+              <div className="flex items-center justify-between px-4 py-2 border-t border-border text-[10px] font-mono text-muted">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1">
-                    <kbd className="px-1 py-0.5 rounded border border-white/10">↑</kbd>
-                    <kbd className="px-1 py-0.5 rounded border border-white/10">↓</kbd>
+                    <kbd className="px-1 py-0.5 rounded border border-border">↑</kbd>
+                    <kbd className="px-1 py-0.5 rounded border border-border">↓</kbd>
                     navigate
                   </span>
                   <span className="flex items-center gap-1">
-                    <kbd className="px-1 py-0.5 rounded border border-white/10">↵</kbd>
+                    <kbd className="px-1 py-0.5 rounded border border-border">↵</kbd>
                     select
                   </span>
                 </div>
@@ -315,10 +313,10 @@ export function CommandPaletteHint() {
   );
   return (
     <>
-      <kbd className="px-1 py-0.5 rounded border border-white/15">
+      <kbd className="px-1 py-0.5 rounded border border-border">
         {mac ? "⌘" : "Ctrl"}
       </kbd>
-      <kbd className="px-1 py-0.5 rounded border border-white/15">K</kbd>
+      <kbd className="px-1 py-0.5 rounded border border-border">K</kbd>
     </>
   );
 }
