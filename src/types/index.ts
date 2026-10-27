@@ -1,3 +1,10 @@
+export interface ResumeEntry {
+  title: string;
+  org?: string;
+  period: string;
+  bullets: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -11,6 +18,9 @@ export interface Project {
   accentColor: string;
   highlights: CaseStudyHighlight[];
   metrics?: Metric[];
+  /** Condensed lines for the resume PDF. Prose reads well on the page but a
+   *  reviewer scanning a CV needs these instead. */
+  bullets?: string[];
   links: ProjectLinks;
 }
 

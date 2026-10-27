@@ -2,6 +2,7 @@ import {
   Project,
   SkillCategory,
   Milestone,
+  ResumeEntry,
   NavItem,
   ContactLink,
 } from "@/types";
@@ -92,6 +93,10 @@ export const PROJECTS: Project[] = [
       { label: "API routes", value: "23", delta: "" },
       { label: "Features shipped", value: "14", delta: "" },
     ],
+    bullets: [
+      "Real-life quests scored for XP, with EXIF checks and peer voting to catch faked photo proof",
+      "In-browser pose detection with TensorFlow.js; 20 Prisma models, 23 API routes",
+    ],
     links: {},
   },
   {
@@ -127,6 +132,10 @@ export const PROJECTS: Project[] = [
       { label: "Placed", value: "Top 10", delta: "" },
       { label: "Teams", value: "32", delta: "" },
       { label: "Minors competing", value: "6", delta: "" },
+    ],
+    bullets: [
+      "Civic app making parliamentary activity readable for Gen-Z, built in 24 hours",
+      "Top 10 of 32 teams at the Open Parliament Hackathon, State Great Hural of Mongolia",
     ],
     links: {},
   },
@@ -171,6 +180,11 @@ export const PROJECTS: Project[] = [
       { label: "Sign-off roles", value: "7", delta: "" },
       { label: "REST endpoints", value: "0", delta: "" },
     ],
+    bullets: [
+      "Replaced the paper clearance folder carried between seven sign-off roles for 109 school staff",
+      "Built entirely on Next.js Server Actions — no REST layer",
+      "PIN login with HMAC sessions, three role types, Excel bulk import",
+    ],
     links: {},
   },
   {
@@ -214,6 +228,11 @@ export const PROJECTS: Project[] = [
       { label: "Paper logbooks", value: "0", delta: "" },
       { label: "Languages", value: "MN / EN", delta: "" },
     ],
+    bullets: [
+      "Matches lost and found posts on colour, place, brand, date and text similarity, then notifies both sides",
+      "Verifies ownership with a question only the owner can answer before opening a handover chat",
+      "Strips GPS from uploads, masks student codes, keeps phone numbers and emails out of the UI by default",
+    ],
     links: {},
   },
   {
@@ -250,6 +269,10 @@ export const PROJECTS: Project[] = [
         label: "Access",
         value: "PIN gate and signed staff sessions — not public",
       },
+    ],
+    bullets: [
+      "Staff-side app: admin panels, signature flow, late-arrival log and its report",
+      "Separate deploy sharing one database; this repo holds the Prisma schema as the source of truth",
     ],
     links: {},
   },
@@ -288,6 +311,10 @@ export const PROJECTS: Project[] = [
         label: "For teachers",
         value: "Lesson editor, picture answers, shagai round",
       },
+    ],
+    bullets: [
+      "Live team classroom quiz: projector and phones kept in sync over Ably",
+      "Lesson editor, picture answers and a shagai round; interface entirely in Mongolian",
     ],
     links: { live: "https://naadam-psi.vercel.app" },
   },
@@ -366,6 +393,10 @@ export const PROJECTS: Project[] = [
         label: "Works offline",
         value: "Single-file slide deck with fonts, logo and QR embedded",
       },
+    ],
+    bullets: [
+      "Club recruitment site: email-OTP applications, paste-aware essay field, auto-scored reviewer queue",
+      "Slide deck also builds to one offline HTML file with fonts, logo and QR embedded",
     ],
     links: { live: "https://mgl3-vantage.vercel.app" },
   },
@@ -546,6 +577,77 @@ export const SKILLS: SkillCategory[] = [
       { name: "Vercel", evidence: "Every deploy on this page" },
       { name: "VS Code / Cursor", evidence: "Daily driver" },
     ],
+  },
+];
+
+// ─── Resume ──────────────────────────────────────────────────────────────────
+/** Shown only in the PDF. Secondary-school dates are left off deliberately —
+ *  add them here once confirmed rather than guessing a graduation year. */
+export const EDUCATION: ResumeEntry[] = [
+  {
+    title: "3rd Secondary School",
+    period: "",
+    bullets: [
+      "Founder and president of the school tech club; the person teachers call for any IT problem.",
+    ],
+  },
+  {
+    title: "Pinecone Academy — Full-Stack Development",
+    period: "2025 · 10 months",
+    bullets: [
+      "Led the team on every group project across the programme.",
+    ],
+  },
+];
+
+export const EXPERIENCE: ResumeEntry[] = [
+  {
+    title: "Frontend Engineering Intern",
+    org: "One of Mongolia's leading fintech companies",
+    period: "April 2026 · 15 days",
+    bullets: [
+      "Built 12 responsive React and TypeScript UI components for a B2B payment dashboard.",
+      "Integrated fintech APIs into production code under engineering review.",
+    ],
+  },
+  {
+    title: "Freelance Developer",
+    period: "2026 — present",
+    bullets: [
+      "Deliver web projects for clients in my own time; covers my own costs.",
+      "Commissioned by the University of Finance & Economics to build and hand over their lost-and-found platform.",
+    ],
+  },
+];
+
+export const AWARDS: ResumeEntry[] = [
+  {
+    title: "Open Parliament Hackathon — top 10 of 32 teams",
+    org: "State Great Hural of Mongolia",
+    period: "2026",
+    bullets: [
+      "Built and pitched Parlagmatic in 24 hours. Six competitors were minors; the average age was 23 or older.",
+    ],
+  },
+  {
+    title: "Founder & President, School Tech Club",
+    org: "3rd Secondary School",
+    period: "2026",
+    bullets: [
+      "10+ members. Runs workshops and internal hackathons, mentors younger students in coding and study-abroad applications.",
+    ],
+  },
+  {
+    title: "District AI Coding Hackathon",
+    org: "Competitor",
+    period: "2026",
+    bullets: [],
+  },
+  {
+    title: "NASA Space Apps Challenge",
+    org: "Registered — results pending",
+    period: "2026",
+    bullets: [],
   },
 ];
 
