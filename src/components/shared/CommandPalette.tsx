@@ -64,7 +64,7 @@ export function CommandPalette() {
       { id: "nav-work", label: "Go to Work", hint: "#work", group: "Navigate", icon: FolderKanban, action: () => scrollTo("#work") },
       { id: "nav-stack", label: "Go to Stack", hint: "#stack", group: "Navigate", icon: Layers, action: () => scrollTo("#stack") },
       { id: "nav-activity", label: "Go to Activity", hint: "#activity", group: "Navigate", icon: GitBranch, action: () => scrollTo("#activity") },
-      { id: "nav-journey", label: "Go to Journey", hint: "#journey", group: "Navigate", icon: Compass, action: () => scrollTo("#journey") },
+      { id: "nav-about", label: "Go to About", hint: "#about", group: "Navigate", icon: Compass, action: () => scrollTo("#about") },
       { id: "nav-contact", label: "Go to Contact", hint: "#contact", group: "Navigate", icon: MessageSquare, action: () => scrollTo("#contact") },
       { id: "copy-email", label: "Copy email", hint: "bolorzoloko@gmail.com", group: "Contact", icon: Mail, action: async () => {
         try { await navigator.clipboard.writeText("bolorzoloko@gmail.com"); } catch { /* ignore */ }

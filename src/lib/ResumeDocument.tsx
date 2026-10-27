@@ -6,7 +6,7 @@ import {
   Link,
   StyleSheet,
 } from "@react-pdf/renderer";
-import { BIO, PROJECTS, SKILLS, TIMELINE, CONTACT_LINKS } from "@/lib/data";
+import { BIO, PROJECTS, SKILLS, MILESTONES, CONTACT_LINKS } from "@/lib/data";
 
 const COLORS = {
   ink: "#0a0a14",
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
 });
 
 const SUMMARY_PROJECTS = PROJECTS.slice(0, 6);
-const SUMMARY_TIMELINE = TIMELINE.slice(-4); // most recent
+const SUMMARY_MILESTONES = MILESTONES.slice(-5); // most recent
 
 function contact(icon: string): string {
   const link = CONTACT_LINKS.find((l) => l.icon === icon);
@@ -253,13 +253,12 @@ export function ResumeDocument() {
         {/* ── Journey ──────────────────────────────────────────────────── */}
         <View style={styles.sectionBlock}>
           <Text style={styles.sectionTitle}>Journey</Text>
-          {SUMMARY_TIMELINE.map((t) => (
-            <View key={t.title} style={styles.timelineItem} wrap={false}>
-              <Text style={styles.timelinePeriod}>{t.period}</Text>
+          {SUMMARY_MILESTONES.map((m) => (
+            <View key={m.title} style={styles.timelineItem} wrap={false}>
+              <Text style={styles.timelinePeriod}>{m.period}</Text>
               <View style={styles.timelineBody}>
-                <Text style={styles.timelineTitle}>{t.title}</Text>
-                <Text style={styles.timelineSubtitle}>{t.subtitle}</Text>
-                <Text style={styles.timelineDescription}>{t.description}</Text>
+                <Text style={styles.timelineTitle}>{m.title}</Text>
+                <Text style={styles.timelineDescription}>{m.detail}</Text>
               </View>
             </View>
           ))}

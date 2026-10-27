@@ -48,13 +48,12 @@ export interface Skill {
   color?: string;
 }
 
-export interface TimelineEvent {
+export interface Milestone {
+  /** Time marker: an age, a year, or a stage. Deliberately not always a date —
+   *  several of these are remembered by what was happening, not when. */
   period: string;
   title: string;
-  subtitle: string;
-  description: string;
-  tags: string[];
-  side: "left" | "right";
+  detail: string;
 }
 
 export interface NavItem {

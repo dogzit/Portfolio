@@ -1,7 +1,7 @@
 import {
   Project,
   SkillCategory,
-  TimelineEvent,
+  Milestone,
   NavItem,
   ContactLink,
 } from "@/types";
@@ -14,11 +14,11 @@ export const BIO = {
     "I build full-stack web products that real people end up using: a clearance portal that retired the paper forms for 109 school staff, a lost-and-found platform a university now runs itself, and a game that pays out XP for real life.",
   /** Two short paragraphs under the lead. Kept short on purpose. */
   intro: [
-    "I'm 17 and I write code in Ulaanbaatar. I got my first computer at six — my dad's old office PC, mostly used for CS 1.6. At 13 I followed a YouTube tutorial, built a tiny burger game, and got more interested in making things than playing them.",
-    "Since joining Pinecone Academy in 2025 I've built around a dozen projects, led three small teams, founded my school's tech club, and interned as a frontend developer at DEHUB, a Mongolian payments company.",
+    "I'm 17 and I write code in Ulaanbaatar. I learned computers at my dad's office after kindergarten, got a PC of my own at seven, and after about five years of Valorant started wondering what was actually happening behind the game. That question is what led me to code.",
+    "Since joining Pinecone Academy in 2025 I've shipped the projects below, led three small teams, founded my school's tech club, and interned at one of Mongolia's leading fintech companies.",
   ],
   story:
-    "I got my first computer at six, my dad's old office PC, and used it mostly for CS 1.6. At 13 I followed a YouTube tutorial, built a tiny burger game, and got hooked on making things instead of just playing them. In 2025 I joined Pinecone Academy, and since then I've shipped about a dozen projects, led a few small teams, founded my school's tech club, and interned at DEHUB. Right now I'm building SIDEQUEST, a game that tries to make real life give out XP. Still playing too much Valorant, but at least now I can explain what I do all day.",
+    "I learned computers at my dad's office after kindergarten, and got a PC of my own at seven. At ten I saved up and bought the next one myself; at fourteen I worked and paid for the one after that. About five years of Valorant later I started asking what was happening behind the game, and that question led me to code. In 2025 I joined Pinecone Academy, led the team on every group project, and since then I've shipped a stack of work, founded my school's tech club, and interned at one of Mongolia's leading fintech companies. Right now I'm building SIDEQUEST, a game that tries to make real life give out XP.",
   tagline: "Code, school, and too much Valorant.",
 };
 
@@ -43,7 +43,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Work", href: "#work" },
   { label: "Stack", href: "#stack" },
   { label: "Activity", href: "#activity" },
-  { label: "Journey", href: "#journey" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -488,79 +488,86 @@ export const SKILLS: SkillCategory[] = [
   },
 ];
 
-// ─── Timeline ─────────────────────────────────────────────────────────────────
-export const TIMELINE: TimelineEvent[] = [
+// ─── Story ───────────────────────────────────────────────────────────────────
+/** The long-form "about me", in order. Plain paragraphs — no claims beyond
+ *  what actually happened. */
+export const STORY: string[] = [
+  "My relationship with computers started before I could really read. After kindergarten I'd sit at the machines in my dad's office, learning from the people who worked there. When I was seven or eight my uncle gave me my first PC — a dual-core running Windows 7. I turned it on every day and taught myself how to use it, mostly by playing music on YouTube.",
+  "At ten I saved my own money and went with my dad to buy the next one: an i3 3rd-gen with a GTX 750 Ti, for ₮600,000. That's where I found games. Around fourteen I worked and paid for an i5 12th-gen with an RTX 2060 myself. After about five years of Valorant I started asking a different question — what's actually happening behind this? That question led me to code.",
+  "In 2025 I joined a coding academy and studied for ten months. On every team project I ended up leading the team. When our teacher told us to create a GitHub account, I found I already had one: I'd opened it two or three years earlier out of curiosity and forgotten about it.",
+  "After graduating I did a fifteen-day internship at one of Mongolia's leading fintech companies, where I learned how software works in the real world, beyond the classroom.",
+  "At school I became the person teachers call whenever something goes wrong with a computer. I wanted to fix real problems there, so I built and deployed a digital clearance form system and a tardiness tracking system — both are in use now. I also remembered being a younger student who said \u201cI want to be a software engineer\u201d without knowing what that meant, or who wanted to study abroad without knowing where to start. So I founded a Tech Club to mentor students who are where I was.",
+  "I used to get nervous presenting even in front of parents. Step by step that changed: a district hackathon, a pitch to my school principal, then the Parliament Hackathon, where my team placed in the top 10 of 32. We built a system in 24 hours and pitched it at the State Great Khural. Most recently I registered for the NASA Space Apps Challenge and I'm waiting on results.",
+  "These days I don't rely on my parents for pocket money either — I earn it with freelance projects in my free time, using the skills all of this built.",
+];
+
+// ─── Milestones ──────────────────────────────────────────────────────────────
+/** The same arc as STORY, compressed to something scannable. */
+export const MILESTONES: Milestone[] = [
   {
-    period: "2015-ish",
-    title: "First computer",
-    subtitle: "It was my dad's office PC",
-    description:
-      "No code yet, just CS 1.6 and a kid who learned to reinstall Windows out of necessity. Looking back, breaking and fixing that thing taught me more about computers than anything before Pinecone did.",
-    tags: ["CS 1.6", "First PC", "Full of viruses"],
-    side: "left",
+    period: "Before school",
+    title: "My dad's office",
+    detail:
+      "Afternoons at the office computers, learning from the people who worked there.",
   },
   {
-    period: "2020 – 2025",
-    title: "Competitive Valorant",
-    subtitle: "Diamond, mostly",
-    description:
-      "Five years of ranked. It sounds unrelated to code, but it's where I learned to stay calm when everything is going wrong, communicate fast, and take criticism after a loss. Turns out that's also useful in code reviews.",
-    tags: ["Valorant", "Diamond", "Way too many hours"],
-    side: "right",
+    period: "Age 7–8",
+    title: "A PC of my own",
+    detail:
+      "A dual-core running Windows 7, from my uncle. Self-taught, daily, mostly YouTube music.",
   },
   {
-    period: "2023",
-    title: "First lines of code",
-    subtitle: "Age 13, one YouTube tutorial",
-    description:
-      "Followed a tutorial for a burger-flipping game, then spent weeks modifying it instead of starting something of my own. That's when I stopped asking what game to play next and started asking how this stuff works.",
-    tags: ["YouTube tutorial", "Burger game", "Hooked"],
-    side: "left",
+    period: "Age 10",
+    title: "The first one I paid for",
+    detail:
+      "Saved up and bought an i3 3rd-gen with a GTX 750 Ti for ₮600,000. That's where I found games.",
   },
   {
-    period: "June 2025",
-    title: "Joined Pinecone Academy",
-    subtitle: "First real curriculum",
-    description:
-      "Started the full-stack program and met actual senior developers for the first time. Learned the T3 stack, proper Git workflow, and that shipping something small beats planning something big.",
-    tags: ["Pinecone Academy", "T3 stack", "First mentors"],
-    side: "right",
+    period: "Age ~14",
+    title: "Worked for the next one",
+    detail: "An i5 12th-gen with an RTX 2060, paid for myself.",
   },
   {
-    period: "April 2026",
-    title: "Internship at DEHUB",
-    subtitle: "Plus a 24-hour hackathon",
-    description:
-      "Joined DEHUB, a Mongolian payments company, as a frontend engineering intern and shipped React and TypeScript components into a B2B payment dashboard. First time my code lived in a codebase I didn't own, next to other people's deadlines and legacy decisions. Same month, built Smart Canteen in 24 hours at a school hackathon.",
-    tags: ["DEHUB", "Production code", "Fintech APIs"],
-    side: "right",
+    period: "~5 years",
+    title: "Valorant, then a question",
+    detail:
+      "What's actually happening behind this? That's the question that led me to code.",
   },
   {
-    period: "May 2026",
-    title: "Shipped Open Mic solo",
-    subtitle: "First all-mine launch",
-    description:
-      "Designed, built, and deployed a registration site for my school's open mic event in about a week. Small project, but every decision was mine and the whole school used it. Best feeling so far.",
-    tags: ["Solo project", "One week", "Real users"],
-    side: "left",
+    period: "2025",
+    title: "Coding academy",
+    detail:
+      "Ten months. Led the team on every group project — and discovered I already had a GitHub account, opened years earlier out of curiosity.",
   },
   {
-    period: "2026",
-    title: "Open Parliament Hackathon",
-    subtitle: "Top 10 of 32 teams",
-    description:
-      "Competed at a hackathon run by the State Great Hural of Mongolia and built Parlagmatic, a civic app that makes parliamentary activity readable for people our age. We finished in the top 10 of 32 teams. Most of the room was 23 or older; six of us were minors. It was the first time I'd been judged against working adults instead of classmates.",
-    tags: ["State Great Hural", "Top 10/32", "Civic tech"],
-    side: "right",
+    period: "After graduating",
+    title: "First internship",
+    detail:
+      "Fifteen days at one of Mongolia's leading fintech companies, seeing how software works outside a classroom.",
   },
   {
-    period: "2026",
+    period: "At school",
+    title: "Two systems, deployed",
+    detail:
+      "A digital clearance form system and a tardiness tracker, both in use at my school.",
+  },
+  {
+    period: "At school",
     title: "Founded the Tech Club",
-    subtitle: "3rd Secondary School, 10+ members",
-    description:
-      "Started my school's first tech club and now run it as president: workshops, internal hackathons, and mentoring members — including younger students — through AI-assisted coding and their own study-abroad applications. Teaching something is how I found out which parts I only half understood.",
-    tags: ["Founder", "President", "Mentoring"],
-    side: "left",
+    detail:
+      "Mentoring younger students who want to be engineers or study abroad but don't know where to start.",
+  },
+  {
+    period: "2026",
+    title: "From nervous to the Parliament floor",
+    detail:
+      "A district hackathon, then a pitch to my school principal, then the Parliament Hackathon — top 10 of 32, a system built in 24 hours, pitched at the State Great Khural.",
+  },
+  {
+    period: "Now",
+    title: "Waiting on NASA, paying my own way",
+    detail:
+      "Registered for the NASA Space Apps Challenge. Freelance projects cover my own costs.",
   },
 ];
 

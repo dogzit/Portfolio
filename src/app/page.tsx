@@ -6,7 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Skills } from "@/components/sections/Skills";
 import { Activity } from "@/components/sections/Activity";
-import { Journey } from "@/components/sections/Journey";
+import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { Marquee } from "@/components/shared/Marquee";
@@ -35,7 +35,7 @@ export default function Home() {
           <Activity />
         </Suspense>
         <hr className="rule" />
-        <Journey />
+        <About />
         <hr className="rule" />
         <Contact />
       </main>
