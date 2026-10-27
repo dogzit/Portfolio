@@ -14,7 +14,6 @@ const FILTERS: Filter[] = [
   { id: "all", label: "All", test: () => true },
   { id: "live", label: "Live", test: (p) => p.status === "Live" },
   { id: "wip", label: "In progress", test: (p) => p.status === "In Progress" },
-  { id: "team", label: "Team lead", test: (p) => p.tags.includes("Team Lead") },
   { id: "hack", label: "Hackathon", test: (p) => p.tags.includes("Hackathon") },
 ];
 

@@ -412,78 +412,6 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    id: "rentlymn",
-    title: "RentlyMN",
-    tagline: "Rental listings without the Facebook groups",
-    description:
-      "Rental listings in Mongolia mostly live in Facebook groups, which is a rough way to find an apartment. I led a small team building a proper marketplace with one database, filters that actually work, and separate accounts for landlords and renters. My job was mostly the schema and making sure four people didn't build the same feature four different ways.",
-    focus: "Marketplace logic, leading a small team",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Prisma",
-      "Neon DB",
-      "Auth.js",
-      "Team Lead",
-    ],
-    year: "2026",
-    status: "Live",
-    gradient: "from-sky-600/20 via-blue-600/10 to-transparent",
-    accentColor: "#0ea5e9",
-    highlights: [
-      {
-        icon: "🧩",
-        label: "Problem",
-        value: "Listings scattered across social media",
-      },
-      {
-        icon: "🔧",
-        label: "Features",
-        value: "Real filters, role-based accounts",
-      },
-      {
-        icon: "👥",
-        label: "My role",
-        value: "Led the team, owned the schema",
-      },
-    ],
-    links: { live: "http://rentlymn.vercel.app/" },
-  },
-  {
-    id: "fitbet",
-    title: "FitBet",
-    tagline: "Fitness goals, with something on the line",
-    description:
-      "Fitness apps lose to the couch because quitting costs nothing. FitBet adds a price: you put something on the line, your friends can see whether you hit your goals, and the app tracks challenges and progress. I led the build and handled session management and the Neon Postgres setup.",
-    focus: "Session management and the challenge system",
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Prisma",
-      "Neon DB",
-      "Auth.js",
-      "Team Lead",
-    ],
-    year: "2026",
-    status: "Live",
-    gradient: "from-lime-600/20 via-green-600/10 to-transparent",
-    accentColor: "#84cc16",
-    highlights: [
-      {
-        icon: "🎯",
-        label: "The bet",
-        value: "Stake something on your fitness goals",
-      },
-      {
-        icon: "🔧",
-        label: "System",
-        value: "Challenges, sessions, progress tracking",
-      },
-      { icon: "👥", label: "My role", value: "Team lead, architecture" },
-    ],
-    links: { live: "https://fitbet.vercel.app/" },
-  },
-  {
     id: "open-mic",
     title: "Open Mic",
     tagline: "One week, one dev, zero paper",
@@ -563,32 +491,6 @@ export const PROJECTS: Project[] = [
       github: "https://github.com/dogzit/hWork",
     },
   },
-  {
-    id: "erhes-tenger",
-    title: "Erhes Tenger",
-    tagline: "One design system, four developers",
-    description:
-      "A group project where I owned the frontend and ended up writing the design system: 50-plus reusable components so four developers could build pages that didn't all look different. Learned Git discipline mostly through merge conflicts.",
-    focus: "Design systems, team Git workflow",
-    tags: ["HTML", "CSS", "Team Lead", "Design Systems"],
-    year: "2025",
-    status: "Live",
-    gradient: "from-orange-600/20 via-amber-600/10 to-transparent",
-    accentColor: "#f59e0b",
-    highlights: [
-      {
-        icon: "🎨",
-        label: "Design system",
-        value: "50+ reusable components",
-      },
-      { icon: "👥", label: "Team", value: "4 developers on one Git workflow" },
-      { icon: "🏆", label: "Branding", value: "Built the identity end to end" },
-    ],
-    links: {
-      github: "https://github.com/dogzit/ErhestengerWeb",
-      live: "https://erhestenger-web.vercel.app",
-    },
-  },
 ];
 
 /** Hero fact strip. The project count is derived so it can't go stale. */
@@ -608,7 +510,7 @@ export const SKILLS: SkillCategory[] = [
     skills: [
       { name: "Next.js", evidence: "Every project since 2025" },
       { name: "React / TypeScript", evidence: "DEHUB production components" },
-      { name: "Tailwind CSS", evidence: "A 50-component design system" },
+      { name: "Tailwind CSS", evidence: "Every interface in this list" },
       { name: "Framer Motion", evidence: "This site" },
     ],
   },
@@ -640,8 +542,7 @@ export const SKILLS: SkillCategory[] = [
     icon: "⬢",
     note: "Day-to-day. Git discipline came from merge conflicts.",
     skills: [
-      { name: "Git / GitHub", evidence: "Four devs, one branch strategy" },
-      { name: "Figma", evidence: "Erhes Tenger brand and UI" },
+      { name: "Git / GitHub", evidence: "Two apps, one shared Prisma schema" },
       { name: "Vercel", evidence: "Every deploy on this page" },
       { name: "VS Code / Cursor", evidence: "Daily driver" },
     ],
