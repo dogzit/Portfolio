@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Archivo } from "next/font/google";
+import { Geist, Geist_Mono, Archivo, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { CommandPalette } from "@/components/shared/CommandPalette";
 
@@ -22,6 +22,16 @@ const displayGrotesque = Archivo({
   weight: ["500", "600", "700", "800"],
   style: ["normal", "italic"],
   subsets: ["latin"],
+  display: "swap",
+});
+
+/* Archivo has no Cyrillic cut, and several project titles are Mongolian
+   (Наадам, Ажилчин Зөгий). Inter Tight sits next to it in the stack so the
+   browser picks it up per glyph instead of dropping to a system font. */
+const displayCyrillic = Inter_Tight({
+  variable: "--font-display-cyrillic",
+  weight: ["600", "700", "800"],
+  subsets: ["cyrillic", "latin"],
   display: "swap",
 });
 
@@ -66,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${displayGrotesque.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${displayGrotesque.variable} ${displayCyrillic.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
