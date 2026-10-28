@@ -18,6 +18,9 @@ export interface Project {
   accentColor: string;
   highlights: CaseStudyHighlight[];
   metrics?: Metric[];
+  /** Screenshot under /public/images/projects. Omitted where there is nothing
+   *  honest to show — a login wall or a project with no deployment. */
+  image?: string;
   /** Condensed lines for the resume PDF. Prose reads well on the page but a
    *  reviewer scanning a CV needs these instead. */
   bullets?: string[];

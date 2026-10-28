@@ -31,7 +31,7 @@ export async function Activity() {
     <section id="activity" className="section">
       <div className="shell">
         <SectionHeader
-          index="03"
+          index="04"
           label="Activity"
           title="The last year, unedited"
           note="Read live from the GitHub API and cached for an hour. I can't tune these numbers from here — they're whatever the commits say."

@@ -158,7 +158,7 @@ function CopyEmail() {
   };
 
   return (
-    <div className="mt-3 flex items-center gap-2 rounded-xl border border-line bg-surface p-2 pl-4">
+    <div className="mt-3 flex items-center gap-2 rounded-none border border-line bg-surface p-2 pl-4">
       <Mail size={14} className="shrink-0 text-faint" />
       <a
         href={`mailto:${EMAIL}`}
@@ -169,7 +169,7 @@ function CopyEmail() {
       <button
         onClick={copy}
         aria-label="Copy email address"
-        className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-muted transition-colors hover:border-line-strong hover:text-foreground"
+        className="grid h-8 w-8 shrink-0 place-items-center rounded-none border border-line text-muted transition-colors hover:border-line-strong hover:text-foreground"
       >
         {copied ? <Check size={14} className="text-positive" /> : <Copy size={14} />}
       </button>

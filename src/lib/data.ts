@@ -42,9 +42,9 @@ export const QUICK_FACTS: { icon: string; label: string; value: string }[] = [
 // ─── Navigation ──────────────────────────────────────────────────────────────
 export const NAV_ITEMS: NavItem[] = [
   { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
   { label: "Stack", href: "#stack" },
   { label: "Activity", href: "#activity" },
-  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -185,6 +185,7 @@ export const PROJECTS: Project[] = [
       "Built entirely on Next.js Server Actions — no REST layer",
       "PIN login with HMAC sessions, three role types, Excel bulk import",
     ],
+    image: "/images/projects/surguuli.jpg",
     links: {},
   },
   {
@@ -233,6 +234,7 @@ export const PROJECTS: Project[] = [
       "Verifies ownership with a question only the owner can answer before opening a handover chat",
       "Strips GPS from uploads, masks student codes, keeps phone numbers and emails out of the UI by default",
     ],
+    image: "/images/projects/lost-found.jpg",
     links: {},
   },
   {
@@ -316,6 +318,7 @@ export const PROJECTS: Project[] = [
       "Live team classroom quiz: projector and phones kept in sync over Ably",
       "Lesson editor, picture answers and a shagai round; interface entirely in Mongolian",
     ],
+    image: "/images/projects/naadam.jpg",
     links: { live: "https://naadam-psi.vercel.app" },
   },
   {
@@ -354,6 +357,7 @@ export const PROJECTS: Project[] = [
         value: "Deploy and tested restore docs, written in Mongolian",
       },
     ],
+    image: "/images/projects/ajilchin-zugii.jpg",
     links: {
       github: "https://github.com/dogzit/ajilchinzugii",
       live: "https://ajilchinzugii.vercel.app",
@@ -398,6 +402,7 @@ export const PROJECTS: Project[] = [
       "Club recruitment site: email-OTP applications, paste-aware essay field, auto-scored reviewer queue",
       "Slide deck also builds to one offline HTML file with fonts, logo and QR embedded",
     ],
+    image: "/images/projects/vantage-club.jpg",
     links: { live: "https://mgl3-vantage.vercel.app" },
   },
   {
@@ -437,6 +442,7 @@ export const PROJECTS: Project[] = [
       { label: "Status", value: "Still online", delta: "" },
       { label: "Database", value: "Postgres", delta: "" },
     ],
+    image: "/images/projects/smart-canteen.jpg",
     links: {
       github: "https://github.com/dogzit/Smart-Canteen---hackathon-26.04.20",
       live: "https://smart-canteen-hackathon-26-04-20.vercel.app",
@@ -478,6 +484,7 @@ export const PROJECTS: Project[] = [
         value: "The whole school, actually",
       },
     ],
+    image: "/images/projects/open-mic.jpg",
     links: {
       github: "https://github.com/dogzit/openMic",
       live: "https://survaljlagch-openmic.vercel.app/",

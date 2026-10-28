@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
+import Image from "next/image";
 import { PROJECTS } from "@/lib/data";
 import { Project } from "@/types";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -117,6 +118,18 @@ function Status({ status }: { status: Project["status"] }) {
 function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => void }) {
   return (
     <article className="card card-hover group mt-10 overflow-hidden">
+      {project.image && (
+        <div className="relative aspect-[16/7] w-full overflow-hidden border-b border-line bg-surface-2">
+          <Image
+            src={project.image}
+            alt={`${project.title} — ${project.tagline}`}
+            fill
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+            priority
+          />
+        </div>
+      )}
       <button onClick={onOpen} className="w-full px-6 py-8 text-left sm:px-10 sm:py-10">
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
@@ -216,7 +229,7 @@ function ProjectRow({
     <article className="group border-b border-line">
       <button
         onClick={onOpen}
-        className="grid w-full grid-cols-[2rem_1fr] items-start gap-x-4 gap-y-3 px-1 py-7 text-left transition-colors duration-300 hover:bg-surface-2/60 sm:grid-cols-[3rem_1fr_auto] sm:gap-x-6 sm:px-3"
+        className="grid w-full grid-cols-[2rem_1fr] items-start gap-x-4 gap-y-3 px-1 py-7 text-left transition-colors duration-300 hover:bg-surface-2/60 sm:grid-cols-[3rem_1fr_auto_auto] sm:gap-x-6 sm:px-3"
       >
         <span className="font-mono text-[11px] text-faint tnum pt-1.5">
           {String(index).padStart(2, "0")}
@@ -244,7 +257,21 @@ function ProjectRow({
           </div>
         </div>
 
-        <div className="col-start-2 flex items-center gap-4 sm:col-start-3 sm:flex-col sm:items-end sm:gap-2 sm:pt-1.5">
+        {project.image ? (
+          <div className="relative hidden h-[88px] w-[150px] shrink-0 overflow-hidden border border-line bg-surface-2 sm:block">
+            <Image
+              src={project.image}
+              alt=""
+              fill
+              sizes="150px"
+              className="object-cover object-top opacity-90 transition-all duration-500 group-hover:scale-[1.04] group-hover:opacity-100"
+            />
+          </div>
+        ) : (
+          <span aria-hidden className="hidden sm:block sm:w-[150px]" />
+        )}
+
+        <div className="col-start-2 flex items-center gap-4 sm:col-start-4 sm:flex-col sm:items-end sm:gap-2 sm:pt-1.5">
           <span className="font-mono text-[11px] text-muted tnum">{project.year}</span>
           <Status status={project.status} />
           <ArrowUpRight
@@ -286,7 +313,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 8, scale: 0.99 }}
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-2xl rounded-2xl border border-line bg-surface"
+        className="relative w-full max-w-2xl rounded-none border border-line bg-surface"
         style={{ boxShadow: "var(--shadow-lg)" }}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
@@ -294,7 +321,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
         aria-label={project.title}
       >
         {/* Sticky head */}
-        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 rounded-t-2xl border-b border-line bg-surface/95 px-6 py-5 backdrop-blur-sm sm:px-9">
+        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 rounded-none border-b border-line bg-surface/95 px-6 py-5 backdrop-blur-sm sm:px-9">
           <div className="min-w-0">
             <div className="flex items-center gap-3 font-mono text-[11px] text-muted">
               <span className="tnum">{project.year}</span>
@@ -308,12 +335,24 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
           </div>
           <button
             onClick={onClose}
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-line text-muted transition-colors hover:border-line-strong hover:text-foreground"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-none border border-line text-muted transition-colors hover:border-line-strong hover:text-foreground"
             aria-label="Close"
           >
             <X size={15} />
           </button>
         </div>
+
+        {project.image && (
+          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-line bg-surface-2">
+            <Image
+              src={project.image}
+              alt={`${project.title} — ${project.tagline}`}
+              fill
+              sizes="(max-width: 672px) 100vw, 672px"
+              className="object-cover object-top"
+            />
+          </div>
+        )}
 
         <div className="px-6 py-7 sm:px-9 sm:py-9">
           <p className="text-[0.9375rem] leading-relaxed text-ink-soft">
@@ -342,7 +381,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
           {project.metrics && (
             <section className="mt-9">
               <h3 className="eyebrow">By the numbers</h3>
-              <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
+              <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-none border border-line bg-line">
                 {project.metrics.map((m) => (
                   <div key={m.label} className="bg-surface px-4 py-4">
                     <p className="font-display tnum text-3xl leading-none text-foreground">

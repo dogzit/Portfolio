@@ -30,12 +30,12 @@ export default function Home() {
         <Marquee items={WORK_TICKER} />
         <CaseStudies />
         <Marquee items={STACK_TICKER} reverse />
+        <About />
+        <hr className="rule" />
         <Skills />
         <Suspense fallback={null}>
           <Activity />
         </Suspense>
-        <hr className="rule" />
-        <About />
         <hr className="rule" />
         <Contact />
       </main>

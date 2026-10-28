@@ -95,7 +95,7 @@ export function Navbar() {
               key={item.href}
               onClick={() => handleNavClick(item.href)}
               className={cn(
-                "rounded-lg px-3 py-1.5 text-sm transition-colors",
+                "rounded-none px-3 py-1.5 text-sm transition-colors",
                 activeSection === item.href
                   ? "bg-surface-2 text-foreground"
                   : "text-muted hover:text-foreground",
@@ -111,7 +111,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={openPalette}
-            className="hidden items-center gap-2 rounded-lg border border-line px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-line-strong hover:text-foreground sm:flex"
+            className="hidden items-center gap-2 rounded-none border border-line px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-line-strong hover:text-foreground sm:flex"
             aria-label="Search the site"
           >
             <Search size={13} />
@@ -125,14 +125,14 @@ export function Navbar() {
 
           <a
             href="#contact"
-            className="hidden rounded-lg bg-foreground px-3.5 py-2 text-sm font-medium leading-none text-background transition-colors hover:bg-accent-ink md:inline-flex"
+            className="hidden rounded-none bg-foreground px-3.5 py-2 text-sm font-medium leading-none text-background transition-colors hover:bg-accent-ink md:inline-flex"
           >
             Say hi
           </a>
 
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="grid h-8 w-8 place-items-center rounded-lg border border-line text-foreground md:hidden"
+            className="grid h-8 w-8 place-items-center rounded-none border border-line text-foreground md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
           >

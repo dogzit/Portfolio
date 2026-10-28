@@ -119,7 +119,7 @@ export function Hero() {
             {/* Facts — a hairline strip, not stat cards */}
             <motion.dl
               {...step(6)}
-              className="mt-12 grid max-w-xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-4"
+              className="mt-12 grid max-w-xl grid-cols-2 gap-px overflow-hidden rounded-none border border-line bg-line sm:grid-cols-4"
             >
               {FACTS.map((f) => (
                 <div key={f.label} className="bg-background px-4 py-3.5">
@@ -149,7 +149,7 @@ export function Hero() {
             className="lg:col-span-5 lg:pl-6"
           >
             <figure className="relative">
-              <div className="overflow-hidden rounded-xl border border-line bg-surface-2">
+              <div className="overflow-hidden rounded-none border border-line bg-surface-2">
                 <div className="relative aspect-[4/5] w-full max-w-sm lg:max-w-none">
                   <ProfilePhoto />
                 </div>

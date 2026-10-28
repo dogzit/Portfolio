@@ -191,7 +191,7 @@ export function CommandPalette() {
               exit={{ opacity: 0, y: -8, scale: 0.97 }}
               transition={{ duration: 0.18, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-xl rounded-xl overflow-hidden border"
+              className="w-full max-w-xl rounded-none overflow-hidden border"
               style={{
                 background: "var(--surface)",
                 borderColor: "var(--border)",
@@ -242,14 +242,14 @@ export function CommandPalette() {
                               <button
                                 onMouseEnter={() => setActive(i)}
                                 onClick={() => c.action()}
-                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors ${
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-none text-left transition-colors ${
                                   isActive
                                     ? "bg-surface-2 text-foreground"
                                     : "text-foreground/70 hover:text-foreground"
                                 }`}
                               >
                                 <span
-                                  className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 border"
+                                  className="w-7 h-7 rounded-none flex items-center justify-center shrink-0 border"
                                   style={{
                                     background: isActive ? "var(--surface-2)" : "transparent",
                                     borderColor: isActive ? "var(--border-hover)" : "var(--border)",
