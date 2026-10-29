@@ -1,12 +1,13 @@
 import { STORY } from "@/lib/data";
 import { SectionHeader } from "@/components/shared/SectionHeader";
-import { Reveal } from "@/components/shared/Reveal";
+import { FloatIn } from "@/components/shared/FloatIn";
 import { Milestones } from "@/components/shared/Milestones";
 
 /**
- * The long version. The hero gives two sentences; this is where someone who
- * wants the whole arc can read it, with the same ground covered as a
- * scannable list underneath for everyone else.
+ * The long version. The hero gives two sentences; this is the whole arc, hung
+ * off a centre thread: the era marked on the line, chapters alternating left
+ * and right, each drifting in from its own side as it scrolls into view. The
+ * compressed timeline sits underneath for anyone who'd rather skim.
  */
 export function About() {
   return (
@@ -19,32 +20,35 @@ export function About() {
           note="Eleven years between the first computer I was allowed to touch and the first system my school actually runs on."
         />
 
-        <div className="mt-10 grid gap-x-16 gap-y-10 lg:grid-cols-[minmax(0,34rem)_1fr]">
-          <div className="space-y-5">
-            {STORY.map((para, i) => (
-              <Reveal key={para.slice(0, 24)} delay={Math.min(i * 0.04, 0.2)}>
-                <p
-                  className={
-                    i === 0
-                      ? "lead text-ink-soft"
-                      : "text-[0.9375rem] leading-relaxed text-ink-soft"
-                  }
-                >
-                  {para}
-                </p>
-              </Reveal>
-            ))}
-          </div>
+        <div className="story-flow mt-14">
+          {STORY.map((chapter, i) => {
+            const side = i % 2 === 0 ? "left" : "right";
+            return (
+              <FloatIn key={chapter.title} from={side}>
+                <article className="story-step" data-side={side}>
+                  <p className="story-era">{chapter.era}</p>
 
-          {/* A pull-quote, set in the display face, so the column isn't dead space */}
-          <Reveal delay={0.1} className="lg:pt-2">
-            <figure className="m-0 border-l border-accent-line pl-6">
-              <blockquote className="font-display text-display-sm text-foreground">
+                  <div className="story-main">
+                    <h3 className="story-title font-display">{chapter.title}</h3>
+                    <div className="story-body">
+                      {chapter.body.map((para) => (
+                        <p key={para.slice(0, 24)}>{para}</p>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              </FloatIn>
+            );
+          })}
+
+          <FloatIn>
+            <figure className="story-aside">
+              <blockquote className="font-display story-quote">
                 I haven&apos;t won first place yet. What I&apos;m proud of is
                 that each competition has been a step forward.
               </blockquote>
             </figure>
-          </Reveal>
+          </FloatIn>
         </div>
 
         <Milestones />

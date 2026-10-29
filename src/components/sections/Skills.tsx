@@ -42,7 +42,7 @@ export function Skills() {
                       <dt className="text-sm text-foreground/85 transition-colors group-hover:text-foreground">
                         {skill.name}
                       </dt>
-                      <dd className="text-right font-mono text-[10.5px] leading-tight text-faint transition-colors group-hover:text-muted">
+                      <dd className="text-right font-mono text-[11px] leading-tight text-faint transition-colors group-hover:text-muted">
                         {skill.evidence}
                       </dd>
                     </div>

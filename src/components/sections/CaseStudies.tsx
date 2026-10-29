@@ -58,7 +58,7 @@ export function CaseStudies() {
               </button>
             ))}
           </div>
-          <p className="font-mono text-[11px] text-faint tnum">
+          <p className="font-mono text-[12px] text-faint tnum">
             {showFeatured ? PROJECTS.length : filtered.length} shown
           </p>
         </Reveal>
@@ -107,7 +107,7 @@ function Status({ status }: { status: Project["status"] }) {
   const dot =
     status === "Live" ? "dot dot-live" : status === "In Progress" ? "dot dot-wip" : "dot";
   return (
-    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted">
+    <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-muted">
       <span className={dot} />
       {status}
     </span>
@@ -134,9 +134,9 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
             <div className="flex items-center gap-4">
-              <span className="font-mono text-[11px] tracking-[0.18em] text-faint tnum">01</span>
+              <span className="font-mono text-[12px] tracking-[0.18em] text-faint tnum">01</span>
               <span aria-hidden className="h-px w-8 bg-line-strong" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+              <span className="font-mono text-[12px] uppercase tracking-[0.16em] text-accent">
                 Featured
               </span>
             </div>
@@ -163,13 +163,13 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
           <div className="lg:col-span-5">
             <dl className="divide-y divide-line border-y border-line">
               <div className="flex items-baseline justify-between py-3">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                   Year
                 </dt>
                 <dd className="font-mono text-xs text-foreground tnum">{project.year}</dd>
               </div>
               <div className="flex items-baseline justify-between py-3">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                   Status
                 </dt>
                 <dd>
@@ -177,7 +177,7 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
                 </dd>
               </div>
               <div className="flex items-baseline justify-between gap-6 py-3">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                   Focus
                 </dt>
                 <dd className="text-right text-xs leading-snug text-foreground/80">
@@ -193,7 +193,7 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
                     <p className="font-display tnum text-2xl leading-none text-foreground">
                       {m.value}
                     </p>
-                    <p className="mt-1.5 font-mono text-[10px] leading-tight text-faint">
+                    <p className="mt-1.5 font-mono text-[11px] leading-tight text-faint">
                       {m.label}
                     </p>
                   </div>
@@ -231,7 +231,7 @@ function ProjectRow({
         onClick={onOpen}
         className="grid w-full grid-cols-[2rem_1fr] items-start gap-x-4 gap-y-3 px-1 py-7 text-left transition-colors duration-300 hover:bg-surface-2/60 sm:grid-cols-[3rem_1fr_auto_auto] sm:gap-x-6 sm:px-3"
       >
-        <span className="font-mono text-[11px] text-faint tnum pt-1.5">
+        <span className="font-mono text-[12px] text-faint tnum pt-1.5">
           {String(index).padStart(2, "0")}
         </span>
 
@@ -272,7 +272,7 @@ function ProjectRow({
         )}
 
         <div className="col-start-2 flex items-center gap-4 sm:col-start-4 sm:flex-col sm:items-end sm:gap-2 sm:pt-1.5">
-          <span className="font-mono text-[11px] text-muted tnum">{project.year}</span>
+          <span className="font-mono text-[12px] text-muted tnum">{project.year}</span>
           <Status status={project.status} />
           <ArrowUpRight
             size={15}
@@ -346,7 +346,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
             it from the card mid-scroll. */}
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-line bg-surface px-6 py-5 sm:px-9">
           <div className="min-w-0">
-            <div className="flex items-center gap-3 font-mono text-[11px] text-muted">
+            <div className="flex items-center gap-3 font-mono text-[12px] text-muted">
               <span className="tnum">{project.year}</span>
               <span aria-hidden className="h-px w-4 bg-line-strong" />
               <Status status={project.status} />
@@ -381,7 +381,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
           )}
 
           <div className="px-6 py-7 sm:px-9 sm:py-9">
-          <p className="text-[0.9375rem] leading-relaxed text-ink-soft">
+          <p className="text-base leading-relaxed text-ink-soft">
             {project.description}
           </p>
 
@@ -394,7 +394,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
                     key={h.label}
                     className="grid grid-cols-[112px_1fr] items-baseline gap-4 py-3.5"
                   >
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                       {h.label}
                     </dt>
                     <dd className="text-sm text-foreground/85">{h.value}</dd>
@@ -413,7 +413,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
                     <p className="font-display tnum text-3xl leading-none text-foreground">
                       {m.value}
                     </p>
-                    <p className="mt-2 font-mono text-[10px] leading-tight text-faint">
+                    <p className="mt-2 font-mono text-[11px] leading-tight text-faint">
                       {m.label}
                     </p>
                   </div>

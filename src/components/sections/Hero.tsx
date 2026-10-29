@@ -34,7 +34,7 @@ export function Hero() {
                 <span className="dot dot-live" />
                 Available for internships
               </p>
-              <p className="flex items-center gap-1.5 font-mono text-[11px] text-muted">
+              <p className="flex items-center gap-1.5 font-mono text-[12px] text-muted">
                 <MapPin size={11} className="text-faint" />
                 {BIO.location}
               </p>
@@ -128,7 +128,7 @@ export function Hero() {
                     <span className="font-display tnum block text-2xl leading-none text-foreground">
                       {f.value}
                     </span>
-                    <span className="mt-1.5 block font-mono text-[10px] uppercase tracking-[0.12em] text-faint">
+                    <span className="mt-1.5 block font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
                       {f.label}
                     </span>
                   </dd>
@@ -154,7 +154,7 @@ export function Hero() {
                   <ProfilePhoto />
                 </div>
               </div>
-              <figcaption className="mt-3 flex items-start gap-2 font-mono text-[11px] leading-relaxed text-faint">
+              <figcaption className="mt-3 flex items-start gap-2 font-mono text-[12px] leading-relaxed text-faint">
                 <span aria-hidden className="mt-2 h-px w-4 shrink-0 bg-line-strong" />
                 That&apos;s me. Yes, the photo is overdue for a retake.
               </figcaption>
@@ -167,7 +167,7 @@ export function Hero() {
                   key={item.label}
                   className="grid grid-cols-[72px_1fr] items-baseline gap-4 border-b border-line py-3.5"
                 >
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                     {item.label}
                   </dt>
                   <dd className="text-sm leading-snug text-foreground/85">{item.value}</dd>
@@ -186,7 +186,7 @@ export function Hero() {
                 animate: { opacity: 1 },
                 transition: { delay: 1.1, duration: 0.8 },
               })}
-          className="mt-16 flex items-center gap-2 font-mono text-[11px] text-faint"
+          className="mt-16 flex items-center gap-2 font-mono text-[12px] text-faint"
         >
           {!reduced && (
             <motion.span

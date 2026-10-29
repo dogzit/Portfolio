@@ -10,6 +10,7 @@ import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { Marquee } from "@/components/shared/Marquee";
+import { MusicPlayer } from "@/components/shared/MusicPlayer";
 import { PROJECTS, SKILLS } from "@/lib/data";
 
 const STACK_TICKER = SKILLS.flatMap((c) => c.skills.map((s) => s.name));
@@ -41,6 +42,9 @@ export default function Home() {
       </main>
 
       <Footer />
+
+      {/* Floats over everything, bottom-left. */}
+      <MusicPlayer />
     </div>
   );
 }

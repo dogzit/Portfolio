@@ -152,22 +152,45 @@
   --font-display: var(--font-display);
   --font-serif: var(--font-display);
 
-  /* Fluid display sizes */
-  --text-display-xl: clamp(3.6rem, 14vw, 9rem);
-  --text-display-xl--line-height: 0.86;
-  --text-display-xl--letter-spacing: -0.045em;
-  --text-display-lg: clamp(2.6rem, 7vw, 4.75rem);
-  --text-display-lg--line-height: 0.94;
-  --text-display-lg--letter-spacing: -0.038em;
-  --text-display: clamp(2.1rem, 4.6vw, 3.25rem);
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.032em;
-  --text-display-sm: clamp(1.5rem, 2.6vw, 2rem);
-  --text-display-sm--line-height: 1.12;
-  --text-display-sm--letter-spacing: -0.022em;
+  /* Fluid display sizes. Brought down from the original poster-sized scale —
+     the hero name was running to 144px and project titles to 76px, which is
+     where most of the "too big" came from. Tracking eases off with the size,
+     since tight negative tracking only reads well very large. */
+  --text-display-xl: clamp(2.5rem, 7.5vw, 4.25rem);
+  --text-display-xl--line-height: 0.96;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-lg: clamp(1.75rem, 3.8vw, 2.5rem);
+  --text-display-lg--line-height: 1.08;
+  --text-display-lg--letter-spacing: -0.024em;
+  --text-display: clamp(1.5rem, 2.6vw, 2rem);
+  --text-display--line-height: 1.15;
+  --text-display--letter-spacing: -0.02em;
+  --text-display-sm: clamp(1.125rem, 1.7vw, 1.3125rem);
+  --text-display-sm--line-height: 1.35;
+  --text-display-sm--letter-spacing: -0.012em;
 
   --animate-fade-up: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   --animate-fade-in: fade-in 0.4s ease forwards;
+}
+
+/* ─── Reading scale ───────────────────────────────────────────────────────────
+   Near Tailwind's default sizes, with looser line-heights. The comfort comes
+   from the leading and the measure, not from scaling everything up — oversized
+   body text reads as a website for people who can't see, which is not the look.
+   Only the very small mono labels were genuinely too small, and those are
+   nudged individually below rather than by inflating the whole scale.
+   ───────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --text-xs: 0.75rem;          /* 12px — stock */
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem;         /* 14px — default */
+  --text-sm--line-height: 1.65;
+  --text-base: 1rem;           /* 16px — default */
+  --text-base--line-height: 1.7;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.45;
 }
 
 @keyframes fade-up {
@@ -202,6 +225,11 @@
   0%, 100% { opacity: 1; }
   50%      { opacity: 0.35; }
 }
+/* The four bars of the music toggle, each offset by a delay. */
+@keyframes eq-bounce {
+  0%, 100% { height: 30%; }
+  50%      { height: 100%; }
+}
 
 /* ═══ Base ═════════════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; }
@@ -231,7 +259,11 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   letter-spacing: -0.003em;
-  overflow-x: hidden;
+  /* Deliberately NOT overflow-x: hidden. Because `html` already clips the
+     x-axis, setting it here too made <body> its own scroll container, which
+     silently broke scroll-snap — the snap declaration on `html` had no snap
+     children left inside its own scrollport. `html` clips horizontally for
+     both of them. */
 }
 
 /* Paper grain — the only "effect" on the page. Barely there by design. */
@@ -298,8 +330,8 @@ p, li, dd, figcaption, blockquote {
   /* Small mono label above a heading */
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
     display: inline-flex;
@@ -316,7 +348,7 @@ p, li, dd, figcaption, blockquote {
   }
 
   /* Comfortable reading measure */
-  .measure    { max-width: 62ch; }
+  .measure    { max-width: 64ch; }
   .measure-sm { max-width: 46ch; }
 
   /* ═══ Layout ═══════════════════════════════════════════════════════════════ */
@@ -384,7 +416,7 @@ p, li, dd, figcaption, blockquote {
     background: var(--surface);
     color: var(--muted);
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     letter-spacing: 0.01em;
     white-space: nowrap;
     transition: color 0.2s ease, border-color 0.2s ease;
@@ -470,7 +502,7 @@ p, li, dd, figcaption, blockquote {
   .cell-label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     letter-spacing: 0.02em;
     color: var(--accent);
   }
@@ -534,7 +566,7 @@ p, li, dd, figcaption, blockquote {
   /* kbd */
   kbd {
     font-family: var(--font-mono);
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     line-height: 1;
     padding: 0.25rem 0.3rem;
     border: 1px solid var(--line);
@@ -599,7 +631,7 @@ p, li, dd, figcaption, blockquote {
     border: 1px solid var(--line);
     background: var(--background);
     color: var(--foreground);
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     transition: border-color 0.2s ease, background 0.2s ease;
   }
   .field::placeholder { color: var(--faint); }
@@ -612,7 +644,7 @@ p, li, dd, figcaption, blockquote {
     display: block;
     margin-bottom: 0.4rem;
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
@@ -636,7 +668,7 @@ p, li, dd, figcaption, blockquote {
     background: var(--foreground);
     color: var(--background);
     font-family: var(--font-mono);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     letter-spacing: 0.01em;
     white-space: nowrap;
   }
@@ -685,7 +717,7 @@ p, li, dd, figcaption, blockquote {
     gap: 1.75rem;
     padding-inline-end: 1.75rem;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     letter-spacing: 0.02em;
     color: var(--muted);
     white-space: nowrap;
@@ -738,8 +770,350 @@ p, li, dd, figcaption, blockquote {
     background: var(--accent-soft);
   }
 
+  /* ─── Story ───────────────────────────────────────────────────────────────
+     A centre thread with the era marked on it, and the chapters hung
+     alternately left and right. Each one drifts in from its own side as it
+     scrolls into view (see FloatIn), so the timeline assembles itself.
+     Below 900px it collapses to one column with the thread down the left —
+     sideways motion on a phone just fights the reading direction.
+     ────────────────────────────────────────────────────────────────────────── */
+  .story-flow {
+    position: relative;
+  }
+
+  .story-step {
+    position: relative;
+  }
+
+  /* ── Narrow: one column, thread down the left ─────────────────────────────
+     The era and the prose both carry the rule, and the breathing room is the
+     prose block's own padding, so consecutive chapters join into one unbroken
+     thread instead of a dashed one. A clay tick marks each era. */
+  .story-era,
+  .story-main {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(1.25rem, 2.6vw, 2rem);
+  }
+  .story-era {
+    position: relative;
+    margin: 0;
+    padding-block: 0.125rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .story-era::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    top: 0.5rem;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+  }
+  .story-main {
+    padding-bottom: clamp(2.5rem, 4.5vw, 3.75rem);
+  }
+  .story-step:last-child .story-main {
+    padding-bottom: 0;
+  }
+
+  /* ── Wide: the centre thread ────────────────────────────────────────────── */
+  @media (min-width: 900px) {
+    .story-flow::before {
+      content: "";
+      position: absolute;
+      top: 0.5rem;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      margin-left: -0.5px;
+      background: var(--line);
+    }
+
+    .story-step {
+      /* The empty channel the thread runs down. The spur below is exactly
+         half of it, so the two always meet at the column edge. */
+      --channel: clamp(6rem, 11vw, 11rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--channel);
+      padding-bottom: clamp(3rem, 5vw, 4.5rem);
+    }
+
+    /* The era sits on the thread, punching a gap in the rule behind it. */
+    .story-era {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      z-index: 1;
+      transform: translateX(-50%);
+      margin: 0;
+      padding: 0.125rem 0.75rem;
+      border-left: 0;
+      background: var(--background);
+      text-align: center;
+    }
+    .story-era::before { content: none; }
+
+    /* Narrower than its column and pushed against the thread, so the spur
+       below actually lands on the text instead of floating in the channel.
+       The prose itself stays left-aligned — a right rag is pretty and hard
+       to read, and reading is the point. */
+    .story-main {
+      border-left: 0;
+      padding-left: 0;
+      padding-top: 2rem;
+      padding-bottom: 0;
+      max-width: 27rem;
+    }
+    .story-step[data-side="left"] .story-main {
+      grid-column: 1;
+      margin-left: auto;
+    }
+    .story-step[data-side="right"] .story-main {
+      grid-column: 2;
+      margin-right: auto;
+    }
+
+    /* A short spur joining each chapter back to the thread. */
+    .story-main::before {
+      content: "";
+      position: absolute;
+      top: 2.65rem;
+      width: calc(var(--channel) / 2);
+      height: 1px;
+      background: var(--accent-line);
+    }
+    .story-step[data-side="left"] .story-main::before  { right: 50%; }
+    .story-step[data-side="right"] .story-main::before { left: 50%; }
+  }
+
+  .story-title {
+    font-size: clamp(1.0625rem, 1.25vw, 1.1875rem);
+    line-height: 1.25;
+    letter-spacing: -0.018em;
+    color: var(--foreground);
+    text-wrap: balance;
+  }
+
+  .story-body {
+    margin-top: 0.625rem;
+    max-width: 58ch;
+  }
+  .story-body > p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .story-body > p + p {
+    margin-top: 0.875em;
+  }
+
+  /* The pull-quote closes the thread, centred under it. */
+  .story-aside {
+    margin: 0;
+    padding-top: 1rem;
+    border-left: 1px solid var(--accent-line);
+    padding-left: clamp(1.25rem, 2.6vw, 2rem);
+  }
+  @media (min-width: 900px) {
+    .story-aside {
+      border-left: 0;
+      padding-left: 0;
+      padding-top: 2.5rem;
+      text-align: center;
+      margin-inline: auto;
+      max-width: 44ch;
+    }
+  }
+  .story-quote {
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+    text-wrap: balance;
+  }
+
+  /* ─── Milestones ──────────────────────────────────────────────────────────
+     The same arc at a glance, under the story. Rows separated by a single
+     hairline each — no cell fills or grid rules, so it reads as a quiet
+     summary rather than a second set of boxes.
+     ────────────────────────────────────────────────────────────────────────── */
+  .timeline {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .timeline > li {
+    display: grid;
+    gap: 0.125rem 2.5rem;
+    padding-block: clamp(0.875rem, 1.6vw, 1.125rem);
+    border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 860px) {
+    .timeline > li {
+      grid-template-columns: 8.5rem 1fr;
+      align-items: baseline;
+    }
+  }
+  .timeline-period {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  @media (min-width: 860px) {
+    .timeline-period { text-align: right; }
+  }
+  .timeline-title {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--foreground);
+  }
+  .timeline-detail {
+    margin-top: 0.125rem;
+    max-width: 64ch;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* ─── Now playing ─────────────────────────────────────────────────────────
+     A floating pill in the corner: a round play button, the track, and who
+     it's by. The one rounded thing on a site built entirely from square
+     corners — it's meant to sit on top of the page rather than in it, and the
+     shape is what makes it read as a player instead of a card.
+     ────────────────────────────────────────────────────────────────────────── */
+  .now-playing {
+    position: fixed;
+    left: clamp(0.875rem, 2.5vw, 1.75rem);
+    bottom: clamp(0.875rem, 2.5vw, 1.75rem);
+    z-index: 55;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.4375rem 1.25rem 0.4375rem 0.4375rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    box-shadow: var(--shadow-md);
+    text-align: left;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .now-playing:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  .now-playing:active { transform: translateY(0); }
+
+  /* The disc. Filled with the accent so the control is unmistakable. */
+  .np-disc {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex: none;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--surface);
+    transition: background 0.25s ease;
+  }
+  .now-playing:hover .np-disc { background: var(--accent-ink); }
+  /* The play triangle reads as off-centre unless it's nudged right. */
+  .np-disc[data-icon="play"] { padding-left: 2px; }
+
+  .np-meta {
+    display: grid;
+    gap: 0.0625rem;
+    min-width: 0;
+  }
+  .np-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    color: var(--foreground);
+  }
+  .np-sub {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Three bars that only move while the track is actually playing. */
+  .np-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 1.5px;
+    height: 0.5rem;
+    margin-right: 0.3125rem;
+    vertical-align: -1px;
+  }
+  .np-bars > i {
+    width: 1.5px;
+    height: 35%;
+    background: var(--accent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .now-playing[data-playing="true"] .np-bars > i {
+      animation: eq-bounce 1.1s ease-in-out infinite;
+    }
+    .now-playing[data-playing="true"] .np-bars > i:nth-child(2) { animation-delay: 0.18s; }
+    .now-playing[data-playing="true"] .np-bars > i:nth-child(3) { animation-delay: 0.36s; }
+  }
+
+  /* On the narrowest phones the pill shrinks to just the disc. */
+  @media (max-width: 420px) {
+    .now-playing {
+      gap: 0;
+      padding: 0.375rem;
+    }
+    .np-meta { display: none; }
+  }
+
   /* Section divider kept for compatibility */
   .section-divider { height: 1px; background: var(--line); }
+}
+
+/* ═══ Scroll snap ══════════════════════════════════════════════════════════
+   Section-by-section scrolling: the page comes to rest on a section, and one
+   flick moves you one section, the way a reel feed does.
+
+   `mandatory` is safe even though several sections run far taller than the
+   viewport. Per the scroll-snap spec, when a snap area is larger than the
+   snapport, *any* scroll position where the area covers the snapport is a
+   valid snap position — so the alignment below only takes effect at the
+   section edges, and reading down the middle of the long story section is
+   unaffected. `scroll-snap-stop: always` is what stops a fast flick from
+   skipping several sections at once.
+
+   Off entirely for anyone who asked for reduced motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+  /* `scroll-padding-top` above keeps the snap clear of the fixed header. */
+  main > section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  /* The footer is the last thing on the page and should settle too. */
+  body > div > footer {
+    scroll-snap-align: start;
+  }
 }
 
 /* ═══ Utilities ════════════════════════════════════════════════════════════ */

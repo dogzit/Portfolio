@@ -27,7 +27,7 @@ export default function NotFound() {
           </Link>
         </div>
 
-        <p className="mt-12 font-mono text-[11px] text-faint">
+        <p className="mt-12 font-mono text-[12px] text-faint">
           Zolbayar · Full-Stack Developer
         </p>
       </div>

@@ -49,7 +49,7 @@ export async function Activity() {
                   <span className="font-display tnum block text-3xl leading-none text-foreground">
                     {t.value.toLocaleString()}
                   </span>
-                  <span className="mt-2 block font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                  <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                     {t.label}
                   </span>
                 </div>
@@ -63,7 +63,7 @@ export async function Activity() {
 
                 {profile.languages && (
                   <div>
-                    <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                       Languages by bytes written
                     </p>
                     <div className="mt-2.5 flex h-2.5 w-full overflow-hidden">
@@ -78,7 +78,7 @@ export async function Activity() {
                         />
                       ))}
                     </div>
-                    <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] text-muted">
+                    <ul className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-muted">
                       {profile.languages.map((lang) => (
                         <li key={lang.name} className="tnum">
                           {lang.name} {(lang.share * 100).toFixed(0)}%
@@ -99,7 +99,7 @@ export async function Activity() {
             href={`https://github.com/${profile.username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="link font-mono text-[11px] text-muted"
+            className="link font-mono text-[12px] text-muted"
           >
             github.com/{profile.username}
             {profile.lastPushedAgo && ` · pushed ${profile.lastPushedAgo}`}

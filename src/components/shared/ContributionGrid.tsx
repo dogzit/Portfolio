@@ -27,7 +27,7 @@ export function ContributionGrid({ data }: { data: Contributions }) {
           {/* Month ruler */}
           <div
             aria-hidden
-            className="mb-1.5 grid grid-flow-col gap-[3px] font-mono text-[9px] text-faint"
+            className="mb-1.5 grid grid-flow-col gap-[3px] font-mono text-[10px] text-faint"
             style={{ gridTemplateColumns: `repeat(${data.weeks.length}, 11px)` }}
           >
             {labels.map((label, i) => (
@@ -65,7 +65,7 @@ export function ContributionGrid({ data }: { data: Contributions }) {
         </div>
       </div>
 
-      <figcaption className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] text-faint">
+      <figcaption className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11px] text-faint">
         <span className="tnum">{data.total.toLocaleString()} contributions this year</span>
         <span className="flex items-center gap-1.5">
           Less

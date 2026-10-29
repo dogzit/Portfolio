@@ -105,7 +105,7 @@ export function Contact() {
                   <SocialDot key={link.label} link={link} />
                 ))}
               </ul>
-              <p className="mt-4 font-mono text-[11px] text-faint">
+              <p className="mt-4 font-mono text-[12px] text-faint">
                 {socialLinks.map((l) => l.username).join("  ·  ")}
               </p>
             </div>
@@ -127,7 +127,7 @@ export function Contact() {
                   <span className="icon-chip">
                     <Icon size={14} />
                   </span>
-                  <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
+                  <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-faint">
                     {fact.label}
                   </p>
                   <p className="mt-1.5 text-sm leading-snug text-foreground/90">
@@ -226,7 +226,7 @@ function ContactForm() {
     <div className="card p-6 sm:p-8">
       <div className="flex items-baseline justify-between gap-4">
         <p className="eyebrow">Or write here</p>
-        <p className="font-mono text-[11px] text-faint">Goes straight to my inbox</p>
+        <p className="font-mono text-[12px] text-faint">Goes straight to my inbox</p>
       </div>
 
       {status === "success" ? (

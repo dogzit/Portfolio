@@ -150,7 +150,7 @@ export default function AdminPage() {
           >
             {t === "messages" ? "Messages" : "Analytics"}
             {t === "messages" && unread > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-500 text-[10px] font-bold flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-blue-500 text-[11px] font-bold flex items-center justify-center">
                 {unread}
               </span>
             )}

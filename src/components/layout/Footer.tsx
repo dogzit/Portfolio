@@ -41,7 +41,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] text-faint">
+          <p className="font-mono text-[12px] text-faint">
             © {new Date().getFullYear()} Zolbayar · Built with Next.js · Works on my
             machine
           </p>

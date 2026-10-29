@@ -88,3 +88,12 @@ export interface ContactLink {
   icon: string;
   username: string;
 }
+
+export interface StoryChapter {
+  /** Time marker for the chapter. Same mixed convention as `Milestone.period`. */
+  era: string;
+  /** Short heading, so the box can be scanned before it's read. */
+  title: string;
+  /** One or two paragraphs of prose. */
+  body: string[];
+}

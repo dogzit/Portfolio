@@ -83,7 +83,7 @@ export function Navbar() {
           <span className="font-display text-xl leading-none text-foreground">
             Zolbayar
           </span>
-          <span className="hidden font-mono text-[10px] tracking-[0.18em] text-faint uppercase sm:inline">
+          <span className="hidden font-mono text-[11px] tracking-[0.18em] text-faint uppercase sm:inline">
             dev
           </span>
         </a>
@@ -152,7 +152,7 @@ export function Navbar() {
                 className="flex w-full items-baseline justify-between border-b border-line py-3 text-left text-sm text-foreground/85"
               >
                 {item.label}
-                <span className="font-mono text-[10px] text-faint">{item.href}</span>
+                <span className="font-mono text-[11px] text-faint">{item.href}</span>
               </button>
             ))}
             <button

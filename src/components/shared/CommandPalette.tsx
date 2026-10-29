@@ -212,7 +212,7 @@ export function CommandPalette() {
                   placeholder="Search… (try project name, 'email', or 'now')"
                   className="flex-1 bg-transparent outline-none text-sm text-foreground placeholder:text-muted/50"
                 />
-                <kbd className="hidden sm:inline-block text-[10px] font-mono text-muted px-1.5 py-0.5 rounded border border-border">
+                <kbd className="hidden sm:inline-block text-[11px] font-mono text-muted px-1.5 py-0.5 rounded border border-border">
                   ESC
                 </kbd>
               </div>
@@ -231,7 +231,7 @@ export function CommandPalette() {
                   if (items.length === 0) return null;
                   return (
                     <li key={g} className="mb-2 last:mb-0">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted/70 px-3 pt-2 pb-1">
+                      <p className="text-[11px] font-mono uppercase tracking-[0.2em] text-muted/70 px-3 pt-2 pb-1">
                         {g}
                       </p>
                       <ul>
@@ -260,7 +260,7 @@ export function CommandPalette() {
                                 <span className="flex-1 min-w-0">
                                   <span className="block text-sm truncate">{c.label}</span>
                                   {c.hint && (
-                                    <span className="block text-[11px] font-mono text-muted/70 truncate">
+                                    <span className="block text-[12px] font-mono text-muted/70 truncate">
                                       {c.hint}
                                     </span>
                                   )}
@@ -279,7 +279,7 @@ export function CommandPalette() {
               </ul>
 
               {/* Footer hint */}
-              <div className="flex items-center justify-between px-4 py-2 border-t border-border text-[10px] font-mono text-muted">
+              <div className="flex items-center justify-between px-4 py-2 border-t border-border text-[11px] font-mono text-muted">
                 <div className="flex items-center gap-3">
                   <span className="flex items-center gap-1">
                     <kbd className="px-1 py-0.5 rounded border border-border">↑</kbd>

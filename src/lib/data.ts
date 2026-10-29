@@ -5,6 +5,7 @@ import {
   ResumeEntry,
   NavItem,
   ContactLink,
+  StoryChapter,
 } from "@/types";
 
 // ─── About Me ────────────────────────────────────────────────────────────────
@@ -660,15 +661,66 @@ export const AWARDS: ResumeEntry[] = [
 
 // ─── Story ───────────────────────────────────────────────────────────────────
 /** The long-form "about me", in order. Plain paragraphs — no claims beyond
- *  what actually happened. */
-export const STORY: string[] = [
-  "My relationship with computers started before I could really read. After kindergarten I'd sit at the machines in my dad's office, learning from the people who worked there. When I was seven or eight my uncle gave me my first PC — a dual-core running Windows 7. I turned it on every day and taught myself how to use it, mostly by playing music on YouTube.",
-  "At ten I saved my own money and went with my dad to buy the next one: an i3 3rd-gen with a GTX 750 Ti, for ₮600,000. That's where I found games. Around fourteen I worked and paid for an i5 12th-gen with an RTX 2060 myself. After about five years of Valorant I started asking a different question — what's actually happening behind this? That question led me to code.",
-  "In 2025 I joined a coding academy and studied for ten months. On every team project I ended up leading the team. When our teacher told us to create a GitHub account, I found I already had one: I'd opened it two or three years earlier out of curiosity and forgotten about it.",
-  "After graduating I did a fifteen-day internship at one of Mongolia's leading fintech companies, where I learned how software works in the real world, beyond the classroom.",
-  "At school I became the person teachers call whenever something goes wrong with a computer. I wanted to fix real problems there, so I built and deployed a digital clearance form system and a tardiness tracking system — both are in use now. I also remembered being a younger student who said \u201cI want to be a software engineer\u201d without knowing what that meant, or who wanted to study abroad without knowing where to start. So I founded a Tech Club to mentor students who are where I was.",
-  "I used to get nervous presenting even in front of parents. Step by step that changed: a district hackathon, a pitch to my school principal, then the Parliament Hackathon, where my team placed in the top 10 of 32. We built a system in 24 hours and pitched it at the State Great Khural. Most recently I registered for the NASA Space Apps Challenge and I'm waiting on results.",
-  "These days I don't rely on my parents for pocket money either — I earn it with freelance projects in my free time, using the skills all of this built.",
+ *  what actually happened.
+ *
+ *  Grouped into titled chapters so the About section can be read as seven
+ *  short boxes instead of one tall wall of text. The prose is unchanged from
+ *  the single-column version; only the breaks and the headings are new. */
+export const STORY: StoryChapter[] = [
+  {
+    era: "Before school",
+    title: "My dad's office",
+    body: [
+      "My relationship with computers started before I could really read. After kindergarten I'd sit at the machines in my dad's office, learning from the people who worked there.",
+      "When I was seven or eight my uncle gave me my first PC — a dual-core running Windows 7. I turned it on every day and taught myself how to use it, mostly by playing music on YouTube.",
+    ],
+  },
+  {
+    era: "Age 10 — 14",
+    title: "The machines I paid for",
+    body: [
+      "At ten I saved my own money and went with my dad to buy the next one: an i3 3rd-gen with a GTX 750 Ti, for ₮600,000. That's where I found games. Around fourteen I worked and paid for an i5 12th-gen with an RTX 2060 myself.",
+      "After about five years of Valorant I started asking a different question — what's actually happening behind this? That question led me to code.",
+    ],
+  },
+  {
+    era: "2025",
+    title: "Ten months at an academy",
+    body: [
+      "In 2025 I joined a coding academy and studied for ten months. On every team project I ended up leading the team.",
+      "When our teacher told us to create a GitHub account, I found I already had one: I'd opened it two or three years earlier out of curiosity and forgotten about it.",
+    ],
+  },
+  {
+    era: "After graduating",
+    title: "Fifteen days in fintech",
+    body: [
+      "After graduating I did a fifteen-day internship at one of Mongolia's leading fintech companies, where I learned how software works in the real world, beyond the classroom.",
+    ],
+  },
+  {
+    era: "At school",
+    title: "Fixing the real problems",
+    body: [
+      "At school I became the person teachers call whenever something goes wrong with a computer. I wanted to fix real problems there, so I built and deployed a digital clearance form system and a tardiness tracking system — both are in use now.",
+      "I also remembered being a younger student who said \u201cI want to be a software engineer\u201d without knowing what that meant, or who wanted to study abroad without knowing where to start. So I founded a Tech Club to mentor students who are where I was.",
+    ],
+  },
+  {
+    era: "2026",
+    title: "From nervous to the Parliament floor",
+    body: [
+      "I used to get nervous presenting even in front of parents. Step by step that changed: a district hackathon, a pitch to my school principal, then the Parliament Hackathon, where my team placed in the top 10 of 32. We built a system in 24 hours and pitched it at the State Great Khural.",
+      "Most recently I registered for the NASA Space Apps Challenge and I'm waiting on results.",
+    ],
+  },
+  {
+    era: "Now",
+    title: "Paying my own way",
+    body: [
+      "These days I don't rely on my parents for pocket money either — I earn it with freelance projects in my free time, using the skills all of this built.",
+    ],
+  },
 ];
 
 // ─── Milestones ──────────────────────────────────────────────────────────────
