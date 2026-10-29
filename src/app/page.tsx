@@ -27,11 +27,11 @@ export default function Home() {
 
       <main className="frame">
         <Hero />
+        <About />
+        {/* The project ticker sits against the work it names. */}
         <Marquee items={WORK_TICKER} />
         <CaseStudies />
         <Marquee items={STACK_TICKER} reverse />
-        <About />
-        <hr className="rule" />
         <Skills />
         <Suspense fallback={null}>
           <Activity />

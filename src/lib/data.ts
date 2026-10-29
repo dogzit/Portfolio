@@ -41,8 +41,8 @@ export const QUICK_FACTS: { icon: string; label: string; value: string }[] = [
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Work", href: "#work" },
   { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
   { label: "Stack", href: "#stack" },
   { label: "Activity", href: "#activity" },
   { label: "Contact", href: "#contact" },

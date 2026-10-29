@@ -38,7 +38,7 @@ export function CaseStudies() {
     <section id="work" className="section">
       <div className="shell">
         <SectionHeader
-          index="01"
+          index="02"
           label="Selected work"
           title="Projects"
           note={`${PROJECTS.length} builds — from a parliament hackathon to a game I'm still writing. Open any one for the details.`}
@@ -286,15 +286,37 @@ function ProjectRow({
 
 /* ── Detail overlay ──────────────────────────────────────────────────────── */
 function ProjectOverlay({ project, onClose }: { project: Project; onClose: () => void }) {
-  // Escape to close + lock the page behind the dialog
+  // Escape to close + lock the page behind the dialog.
+  //
+  // `overflow: hidden` on the body alone does not hold on iOS Safari: the page
+  // behind keeps scrolling and jumps to the top when the dialog closes. Pinning
+  // the body at its current offset and restoring the scroll position afterwards
+  // is the behaviour people expect on a phone.
   useEffect(() => {
     const handler = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", handler);
-    const prev = document.body.style.overflow;
+
+    const y = window.scrollY;
+    const { overflow, position, top, width } = document.body.style;
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${y}px`;
+    document.body.style.width = "100%";
+
     return () => {
       window.removeEventListener("keydown", handler);
-      document.body.style.overflow = prev;
+      document.body.style.overflow = overflow;
+      document.body.style.position = position;
+      document.body.style.top = top;
+      document.body.style.width = width;
+
+      // Two things would otherwise eat the restore. While the body is fixed the
+      // document collapses to viewport height, so reading a layout property
+      // forces the reflow that gives the page its scroll range back; and the
+      // stylesheet sets `scroll-behavior: smooth`, which would animate this
+      // and get clamped partway. Jump instantly instead.
+      void document.body.offsetHeight;
+      window.scrollTo({ top: y, left: 0, behavior: "instant" });
     };
   }, [onClose]);
 
@@ -304,7 +326,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto p-4 py-[8vh] backdrop-blur-[2px] sm:p-8"
+      className="fixed inset-0 z-[100] flex items-end justify-center backdrop-blur-[2px] sm:items-center sm:p-8"
       style={{ background: "color-mix(in srgb, var(--background) 40%, rgba(20,16,12,0.6))" }}
       onClick={onClose}
     >
@@ -313,15 +335,16 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 8, scale: 0.99 }}
         transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-2xl rounded-none border border-line bg-surface"
+        className="relative flex max-h-[92svh] w-full max-w-2xl flex-col overflow-hidden border-t border-line bg-surface sm:max-h-[86svh] sm:border"
         style={{ boxShadow: "var(--shadow-lg)" }}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-label={project.title}
       >
-        {/* Sticky head */}
-        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 rounded-none border-b border-line bg-surface/95 px-6 py-5 backdrop-blur-sm sm:px-9">
+        {/* Fixed head: a flex child, so it holds without `sticky` detaching
+            it from the card mid-scroll. */}
+        <div className="flex shrink-0 items-start justify-between gap-4 border-b border-line bg-surface px-6 py-5 sm:px-9">
           <div className="min-w-0">
             <div className="flex items-center gap-3 font-mono text-[11px] text-muted">
               <span className="tnum">{project.year}</span>
@@ -342,19 +365,22 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
           </button>
         </div>
 
-        {project.image && (
-          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-line bg-surface-2">
-            <Image
-              src={project.image}
-              alt={`${project.title} — ${project.tagline}`}
-              fill
-              sizes="(max-width: 672px) 100vw, 672px"
-              className="object-cover object-top"
-            />
-          </div>
-        )}
+        {/* The only scroller. overscroll-contain stops a flick at the end of
+            the list from scrolling the page behind it. */}
+        <div className="flex-1 overflow-y-auto overscroll-contain">
+          {project.image && (
+            <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-line bg-surface-2">
+              <Image
+                src={project.image}
+                alt={`${project.title} — ${project.tagline}`}
+                fill
+                sizes="(max-width: 672px) 100vw, 672px"
+                className="object-cover object-top"
+              />
+            </div>
+          )}
 
-        <div className="px-6 py-7 sm:px-9 sm:py-9">
+          <div className="px-6 py-7 sm:px-9 sm:py-9">
           <p className="text-[0.9375rem] leading-relaxed text-ink-soft">
             {project.description}
           </p>
@@ -435,6 +461,7 @@ function ProjectOverlay({ project, onClose }: { project: Project; onClose: () =>
                 Private repo — happy to walk through it on a call.
               </p>
             )}
+            </div>
           </div>
         </div>
       </motion.div>
