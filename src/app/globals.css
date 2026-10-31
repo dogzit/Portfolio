@@ -231,6 +231,12 @@
   50%      { height: 100%; }
 }
 
+/* The spotlight beam sweeps in once, from off-canvas, then holds. */
+@keyframes spotlight-in {
+  from { opacity: 0; transform: translate(-58%, -42%) scale(0.72); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
 /* ═══ Base ═════════════════════════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -1085,6 +1091,35 @@ p, li, dd, figcaption, blockquote {
 
   /* Section divider kept for compatibility */
   .section-divider { height: 1px; background: var(--line); }
+
+  /* ─── Spotlight beam ──────────────────────────────────────────────────────
+     Ported from Aceternity's spotlight. The element is far wider than its
+     section and is clipped by the section's own `overflow-hidden`; the
+     translate in the keyframes is what positions it, so callers only set
+     `top`/`left`.
+     ────────────────────────────────────────────────────────────────────────── */
+  .spotlight-beam {
+    z-index: 0;
+    height: 140%;
+    width: 150%;
+    max-width: none;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    animation: spotlight-in 2.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    will-change: transform, opacity;
+  }
+  @media (min-width: 1024px) {
+    .spotlight-beam { width: 95%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    /* No sweep — just sit at the resting position. The global reduce rule
+       collapses the duration, which would otherwise leave it at opacity 0. */
+    .spotlight-beam {
+      animation: none;
+      opacity: 1;
+    }
+  }
 }
 
 /* ═══ Scroll snap ══════════════════════════════════════════════════════════

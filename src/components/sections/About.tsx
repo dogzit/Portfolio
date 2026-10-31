@@ -14,7 +14,7 @@ export function About() {
     <section id="about" className="section">
       <div className="shell">
         <SectionHeader
-          index="01"
+          index="02"
           label="About"
           title="My story"
           note="Eleven years between the first computer I was allowed to touch and the first system my school actually runs on."

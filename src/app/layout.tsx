@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Archivo, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { CommandPalette } from "@/components/shared/CommandPalette";
+import { Konami } from "@/components/shared/Konami";
+import { ConsoleGreeting } from "@/components/shared/ConsoleGreeting";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -90,6 +92,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         {children}
         <CommandPalette />
+        {/* Hidden extras: nothing on the page points at either of these. */}
+        <Konami />
+        <ConsoleGreeting />
       </body>
     </html>
   );

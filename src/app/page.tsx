@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { StatusBar } from "@/components/layout/StatusBar";
 import { Hero } from "@/components/sections/Hero";
+import { Snapshot } from "@/components/sections/Snapshot";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Skills } from "@/components/sections/Skills";
 import { Activity } from "@/components/sections/Activity";
@@ -28,6 +29,8 @@ export default function Home() {
 
       <main className="frame">
         <Hero />
+        {/* The skim layer, before the long story. */}
+        <Snapshot />
         <About />
         {/* The project ticker sits against the work it names. */}
         <Marquee items={WORK_TICKER} />

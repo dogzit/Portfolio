@@ -9,7 +9,7 @@ export function Skills() {
     <section id="stack" className="section">
       <div className="shell">
         <SectionHeader
-          index="03"
+          index="04"
           label="Stack"
           title="What I reach for"
           note="No skill bars — percentages on a portfolio are made up. Each tool below is listed with the thing I actually built with it."

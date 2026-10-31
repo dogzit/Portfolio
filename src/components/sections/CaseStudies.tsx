@@ -8,6 +8,7 @@ import { PROJECTS } from "@/lib/data";
 import { Project } from "@/types";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { Reveal } from "@/components/shared/Reveal";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 type Filter = { id: string; label: string; test: (p: Project) => boolean };
 
@@ -38,7 +39,7 @@ export function CaseStudies() {
     <section id="work" className="section">
       <div className="shell">
         <SectionHeader
-          index="02"
+          index="03"
           label="Selected work"
           title="Projects"
           note={`${PROJECTS.length} builds — from a parliament hackathon to a game I'm still writing. Open any one for the details.`}
@@ -66,10 +67,15 @@ export function CaseStudies() {
         {/* Featured */}
         {showFeatured && (
           <Reveal delay={0.05}>
-            <FeaturedProject
-              project={featured}
-              onOpen={() => setSelected(featured.id)}
-            />
+            {/* Only the featured card tilts. Applying it to the rows too would
+                mean eight cards all leaning at once, which stops reading as a
+                physical object and starts reading as a gimmick. */}
+            <TiltCard max={3.5} lift={8}>
+              <FeaturedProject
+                project={featured}
+                onOpen={() => setSelected(featured.id)}
+              />
+            </TiltCard>
           </Reveal>
         )}
 
@@ -126,7 +132,7 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
             fill
             sizes="(max-width: 1024px) 100vw, 1024px"
             className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-            priority
+            preload
           />
         </div>
       )}

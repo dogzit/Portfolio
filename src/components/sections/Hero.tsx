@@ -7,6 +7,9 @@ import { useState } from "react";
 import { BIO, CURRENTLY, FACTS, PROJECTS } from "@/lib/data";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { LocalTime } from "@/components/shared/LocalTime";
+import { Spotlight } from "@/components/ui/Spotlight";
+import { TextGenerate } from "@/components/ui/TextGenerate";
+import { BorderTrailButton } from "@/components/ui/MovingBorder";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -24,8 +27,20 @@ export function Hero() {
         };
 
   return (
-    <section id="hero" className="relative flex min-h-svh items-center pt-28 pb-16">
-      <div className="shell w-full">
+    <section
+      id="hero"
+      className="relative flex min-h-svh items-center overflow-hidden pt-28 pb-16"
+    >
+      {/* Two beams raking in from opposite corners. Both are clipped by the
+          section; the second is slower and fainter so they don't read as one
+          symmetrical shape. */}
+      <Spotlight className="-top-[18%] left-[8%]" />
+      <Spotlight
+        className="top-[42%] left-[82%] opacity-60 [animation-delay:0.6s]"
+        fill="var(--accent-ink)"
+      />
+
+      <div className="shell relative z-10 w-full">
         <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-10">
           {/* ── Left: the statement ───────────────────────────────────────── */}
           <div className="lg:col-span-7">
@@ -86,9 +101,14 @@ export function Hero() {
               <em className="text-foreground">seventeen</em>, in Ulaanbaatar.
             </motion.p>
 
-            <motion.p {...step(3)} className="lead measure mt-8">
-              {BIO.lead}
-            </motion.p>
+            {/* The one sentence that has to land, so it arrives word by word
+                rather than all at once. */}
+            <TextGenerate
+              words={BIO.lead}
+              className="lead measure mt-8"
+              delay={0.45}
+              stagger={0.028}
+            />
 
             <motion.div {...step(4)} className="measure mt-6 space-y-3 text-sm leading-relaxed text-muted">
               {BIO.intro.map((para) => (
@@ -98,10 +118,10 @@ export function Hero() {
 
             {/* CTAs */}
             <motion.div {...step(5)} className="mt-9 flex flex-wrap items-center gap-3">
-              <a href="#work" className="btn btn-primary">
+              <BorderTrailButton href="#work">
                 See my work
                 <ArrowDown size={14} />
-              </a>
+              </BorderTrailButton>
               <a href="#contact" className="btn btn-ghost">
                 Get in touch
               </a>
@@ -218,7 +238,7 @@ function ProfilePhoto() {
       fill
       sizes="(max-width: 1024px) 384px, 420px"
       className="object-cover object-top"
-      priority
+      preload
       onError={() => setImgError(true)}
     />
   );
